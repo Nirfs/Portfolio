@@ -1,0 +1,21 @@
+@use '../styles/abstract/variable' as v;
+@use '../styles/abstract/mixins' as m;
+
+.skill_header{
+    margin-top: 50px;
+    padding: 0 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.skill_card_container{
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+      @include m.media(v.$bp-lg) {
+        flex-direction: column;
+        align-items: center;
+    }
+}
