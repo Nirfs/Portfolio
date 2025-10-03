@@ -1,0 +1,52 @@
+@use '../styles/abstract/variable' as v;
+@use '../styles/abstract/mixins' as m;
+
+.doodle_bg{
+    position: absolute;
+    height: 80%;
+    top: 60px;
+    right: 0;
+    z-index: -1;
+        @include m.media(v.$bp-lg) {
+        height: 100%;
+        top: 60px;
+        }
+}
+
+.empty_container{
+    height: 120px;
+    background-color: v.$color-dark;
+}
+
+.work_section{
+        margin-top: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        .filter{
+            background-color: v.$color-dark;
+            color: v.$color-light;
+            padding: 20px 20px;
+            display: flex;
+            justify-content:center;
+            gap: 60px;
+            width: 40%;
+            border-radius: 15px;
+            button{
+                &.active{
+                    color: v.$color-yellow;
+                }
+            }
+        }
+}
+
+.card_section{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    @include m.media(v.$bp-lg) {
+    grid-template-columns: repeat(2,1fr);
+    }
+}
