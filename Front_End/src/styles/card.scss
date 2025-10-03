@@ -1,0 +1,41 @@
+.work_card_container{    
+        border: black 2px solid;
+        aspect-ratio: 1;
+        object-fit: fill;
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        min-height: 200px;
+        padding: 0;
+        position: relative;   
+        transition: all ease 0.3s; 
+        filter: brightness(01);
+        overflow: hidden;
+        p{
+            font-family: "Alan Sans", sans-serif;
+            font-weight: bold;
+            font-size: 2rem;
+            color: #fff;
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto -6%;
+            padding-left: 20px;
+            padding-right: 20px;
+            position: absolute;
+            inset: auto 0% 15%;
+            transform: translateY(100px);
+            transition: all ease 0.3s;
+    }   
+    &:hover{
+        z-index: 5;
+        filter: brightness(0.5);
+        p{
+        z-index: 5;
+            transform: translateY(0px); 
+        }
+    }
+}
+
