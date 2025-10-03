@@ -15,14 +15,14 @@ const router = createBrowserRouter([
             {
                 index:true,
                 element:<Home/>,
-                //loader: getWork,
-                //HydrateFallback: () => null
+                loader: getWork,
+                HydrateFallback: () => null
             },
             {
-                path:'travaux/:id', 
+                path:'work/:id', 
                 element:<Work/>,
-                //loader: getWork,
-                //HydrateFallback: () => null
+                loader: getWork,
+                HydrateFallback: () => null
             },
             {
                 path:'*', 
