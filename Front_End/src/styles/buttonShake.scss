@@ -1,0 +1,23 @@
+@use '../styles/abstract/variable' as v;
+@use '../styles/abstract/mixins' as m;
+.big_button_shake{
+    padding: 20px 40px;
+    display: flex;
+    justify-self: end;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    color: v.$color-dark;
+    position: relative;
+    top: -100px;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 15px;
+    background-color: v.$color-purple;
+
+    @include m.media(v.$bp-lg) {
+        flex-direction: column-reverse;
+        padding: 15px 40px;
+        top: -450px;
+    }
+}
