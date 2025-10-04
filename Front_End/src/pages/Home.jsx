@@ -4,6 +4,7 @@ import { useLoaderData } from 'react-router-dom'
 import { PresentationAnimation } from '../components/PresentationAnimation'
 import { SkillAnimation } from '../components/SkillAnimation'
 import { Card } from '../components/Card'
+import { AddProjectModal } from '../components/AddProjectModal'
 //assets
 import bg from '../assets/doodle_illustration.svg'
 //styles
@@ -26,14 +27,17 @@ export function Home(){
                 <img className='doodle_bg'src={bg} alt='illustration pop culture de style doodle'/>
                 <PresentationAnimation/>
             </section>
+
             <div className='empty_container'></div>
-            <section>
+
+            <section id='competences'>
                 <SkillAnimation/>
             </section>
+
             <section className='work_section'>
-                <h2>TRAVAUX</h2>
+                <h2 id='travaux'>TRAVAUX</h2>
                 <nav className='filter'>
-                 {['all', 'dev web', 'graphisme'].map((cat) => (
+                 {['all', 'developpement web', 'graphisme'].map((cat) => (
                     <button
                         key={cat}
                         className={filter === cat ? 'active' : ''}
@@ -42,6 +46,7 @@ export function Home(){
                         {cat === "all" ? "Tous" : cat}
                     </button>
                  ))}
+                 <AddProjectModal/>
                 </nav>
                  <div className="card_section">
                     {filterWork.map((work) => (

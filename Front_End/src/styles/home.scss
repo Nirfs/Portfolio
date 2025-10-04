@@ -3,13 +3,13 @@
 
 .doodle_bg{
     position: absolute;
-    height: 80%;
+    height: 90%;
     top: 60px;
     right: 0;
     z-index: -1;
         @include m.media(v.$bp-lg) {
-        height: 100%;
-        top: 60px;
+        height: 120%;
+        top: 120px;
         }
 }
 
@@ -28,11 +28,10 @@
         .filter{
             background-color: v.$color-dark;
             color: v.$color-light;
-            padding: 20px 20px;
+            padding: 20px 50px;
             display: flex;
             justify-content:center;
             gap: 60px;
-            width: 40%;
             border-radius: 15px;
             button{
                 &.active{
@@ -48,5 +47,8 @@
     grid-template-columns: repeat(4,1fr);
     @include m.media(v.$bp-lg) {
     grid-template-columns: repeat(2,1fr);
+    }
+    @include m.media(v.$bp-sm) {
+    grid-template-columns: 1fr;
     }
 }
