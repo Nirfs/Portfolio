@@ -1,0 +1,74 @@
+@use '../styles/abstract/variable' as v;
+@use '../styles/abstract/mixins' as m;
+.form_connect{
+  display: flex;
+  flex-direction: column;
+          align-items: center;
+  gap: 30px;
+    h2{
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    .input_grp{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+
+    }
+}
+
+input {
+  width: 100%;
+  max-width: 270px;
+  height: 60px;
+  padding: 12px;
+  font-size: 18px;
+  color: #000;
+  background-color: #fff;
+  border: 4px solid #000;
+  border-radius: 0;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 8px 8px 0 #000;
+
+  &:hover{
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0 #000;
+  }
+  &:focus{
+      background-color: #000;
+    color: #fff;
+    border-color: #ffffff;
+  }
+}
+.connect_modal_overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 15, 15, 0.55);
+  display: grid;
+  place-items: center;
+  z-index: 50;
+}
+
+.connect_modal_content {
+  background: v.$color-purple;
+  border: 2px v.$color-dark solid;
+  color: v.$color-dark;
+  width: min(90vw, 520px);
+  border-radius: 5px;
+  padding: 20px;
+  outline: none;
+  transform: translateY(0);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+/* petites animations avec closeTimeoutMS */
+.ReactModal__Content--after-open {
+  opacity: 1;
+  transform: translateY(0);
+}
+.ReactModal__Content--before-close {
+  opacity: 0;
+  transform: translateY(-6px);
+}
