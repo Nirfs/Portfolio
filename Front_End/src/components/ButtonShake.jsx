@@ -7,7 +7,7 @@ export function ButtonShake({bool, text}){
     let isBig = {bool}
     
     return(
-        <motion.div className={bool ? "big_button_shake" : 'button_shake'}
+        <motion.button className={bool ? "big_button_shake" : 'button_shake'}
             animate={{
                 rotate:[0,-5,5,-5,0]
             }}
@@ -22,7 +22,7 @@ export function ButtonShake({bool, text}){
                 repeatDelay:"3"
             }}
         >
-            <NavLink to='/'>{text}</NavLink>
-        </motion.div>
+        {text}
+        </motion.button>
     )
 }
