@@ -89,10 +89,7 @@ export function PresentationAnimation(){
                                     duration: 0.4, 
                                     ease: "easeInOut"
                                 }}
-                            >Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                Rem dolorem nobis laudantium! Quos suscipit itaque consequuntur molestias, 
-                                nemo ipsam vitae hic, ea similique eaque, eius aspernatur explicabo debitis 
-                                facilis repellendus?
+                            >Hello ! Je m’appelle Kevin Pieplu, designer graphique et développeur web junior. Passionné d’informatique depuis toujours, je suis curieux, créatif et autonome. J’aime explorer de nouvelles idées, trouver des solutions élégantes à des problèmes complexes et donner vie à des projets à travers le design et le code. Mon objectif : allier esthétique et efficacité pour créer des expériences uniques.
                             </motion.p>
                         </div>
                         <motion.img 

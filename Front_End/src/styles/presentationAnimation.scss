@@ -7,7 +7,7 @@
     align-items: center;
     gap: 50px;
     background-color: v.$color-yellow;
-    padding-top: 30px;
+    padding: 50px;
     margin: 50px 15%;
     border-radius: 25px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
@@ -23,11 +23,11 @@
         height: auto;
     }
     .text_containe{
-        padding:  0 10px;
+        padding:  20px 20px;
         display: flex;
         flex-direction: column;
         gap: 10px;
-        width: clamp(250px, 24vw, 600px);
+        width: clamp(300px, 24vw, 600px);
         @include m.media(v.$bp-lg) {
             padding:  10px;
         }
