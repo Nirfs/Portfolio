@@ -1,6 +1,8 @@
 @use '../styles/abstract/variable' as v;
 @use '../styles/abstract/mixins' as m;
-
+#competences{
+    overflow: hidden;
+}
 .skill_header{
     margin-top: 50px;
     padding: 0 10%;
