@@ -5,6 +5,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body{
+  width: 100%;
+  font-family: v.$font-primary;
+}
 // Styles globaux
 h1 {
   font-family: v.$font-primary;
@@ -74,3 +79,4 @@ a, button {
     text-decoration: underline;
   }
 }
+
