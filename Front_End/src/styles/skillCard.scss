@@ -1,5 +1,6 @@
 @use '../styles/abstract/variable' as v;
 @use '../styles/abstract/mixins' as m;
+
 .card{
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
     display: flex;
@@ -15,14 +16,16 @@
         align-self: center;
         justify-content: end;
     }
+    
     &.front_end{
    
         color: white;
         background-color: black;
-        max-width: 450px;
+        max-width: 350px;
         height: 450px;
+
         @include m.media(v.$bp-lg) {
-        transform: rotate(5deg);
+            transform: rotate(5deg);
         }
 
     }
@@ -33,8 +36,8 @@
         max-width: 350px;
         height: 450px;
         border-radius: 25px;
+
         @include m.media(v.$bp-lg) {
-            max-width: 450px;
             transform: rotate(-5deg);
         }
     }
@@ -48,9 +51,6 @@
             max-width: 350px;
             height: 450px;
             border-radius: 25px;
-            @include m.media(v.$bp-lg) {
-                max-width: 450px;
-            }
     }
 }
 

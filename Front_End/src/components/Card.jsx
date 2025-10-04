@@ -9,7 +9,7 @@ export function Card({ navLink, src, alt, name }) {
                 style={{ backgroundImage: `url(${src})` }}
                 title={alt}
             >
-                <p>{name}</p> 
+                <h3>{name}</h3> 
             </article>
         </Link>
     )
