@@ -5,7 +5,7 @@ export function Work(){
 
     const workList = useLoaderData()
     const {id} = useParams()
-    const work = workList.find((item) => item.id === id)
+    const work = workList.find((item) => item._id === id)
 
     if(!work){
         return <NotFound/>
@@ -13,14 +13,14 @@ export function Work(){
 
     return(
         <section className="work_section">
-            <img className='img_principal' src={work.img} alt={work.img_desc} />
+            <img className='img_principal' src={work.imageUrl} alt={work.img_desc} />
             <div className="text_container">
-                <h1>{work.name}</h1>
+                <h1>{work.title}</h1>
                 <p>{work.description}</p>
             </div>
             <div className="work_img_container">
-                {work.presentation_img && work.presentation_img.map((img, index) => (
-                        <img key={index} src={img} alt={`${work.img_desc} ${index}`} />
+                {work.secondaryImageUrl && work.secondaryImageUrl.map((img, index) => (
+                        <img key={title + index} src={img} alt={work.title} />
                 ))}
             </div>
             { work.video ? <video src={work.video} controls width="00"></video> : null }

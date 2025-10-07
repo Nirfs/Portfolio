@@ -12,15 +12,14 @@ import '../styles/home.scss'
 import { useState } from 'react'
 
 
-
 export function Home(){
     const worksList = useLoaderData()
     const [filter, setFilter] = useState("all")
-
+    console.log(worksList)
     const filterWork = worksList.filter(work =>
         filter === 'all' ? true : work.category === filter
     )
-    console.log(filter)
+
     return(
         <>
             <section>
@@ -51,10 +50,10 @@ export function Home(){
                  <div className="card_section">
                     {filterWork.map((work) => (
                         <Card 
-                        key={work.id} 
-                        navLink={`/work/${work.id}`}
-                        src={work.img} 
-                        name={work.name} 
+                        key={work._id} 
+                        navLink={`/work/${work._id}`}
+                        src={work.imageUrl} 
+                        name={work.title} 
                         />
                     ))}
                 </div>
