@@ -7,33 +7,37 @@ import '../styles/addProjectModal.scss'
 
 export function AddProjectModal(){
     const API_URL = 'http://localhost:4000';
+    
     //Images
     const [mainFile, setMainFile] = useState(null)
     const [mainPreview, setMainPreview] = useState(null)
     const [secondaryFiles, setSecondaryFiles] = useState([])
-
+    const [selectedStacks, setSelectedStacks] = useState([]);
+    
     //form
     const [title, setTitle] = useState('')
+    const [videoUrl, setVideoUrl] = useState('')
     const [desc, setDesc] = useState('')
     const [category, setCategory] = useState('')
     const [isOpen, setIsOpen] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [erreur, setErreur] = useState("") // ✅ Chaîne vide au lieu de false
+    const [erreur, setErreur] = useState("")
+    const [ghLink, setGhLink] = useState("")
+    const [wsLink, setWsLink] = useState("")
 
     const {token} = useAuth()
 
-    // Nettoyage de l'URL au démontage
     useEffect(() => {
         return () => {
             if (mainPreview) URL.revokeObjectURL(mainPreview)
         }
     }, [mainPreview])
 
-
     //modale
     const handleOpen = () => {setIsOpen(true)}
     const handleClose = () => {
         setIsOpen(false)
+        clearPreviewsAndFiles()
         setErreur("")
     }
 
@@ -49,10 +53,7 @@ export function AddProjectModal(){
             setErreur("Aucun fichier sélectionné")
             return
         }
-
-        const ok = files.filter(f => f.type.startsWith('image/') && f.size <= MAX_SIZE)
-
-        
+        const ok = files.filter(f => f.type.startsWith('image/') && f.size <= MAX_SIZE)       
         setSecondaryFiles(prev => [...prev, ...ok].slice(0, MAX))
   
         if (ok.length === 0) {
@@ -103,62 +104,58 @@ export function AddProjectModal(){
     }
     
     const handleSubmit = async (e) => {
-        e.preventDefault()
+    e.preventDefault()
+    if (loading) return
+    setLoading(true)
 
-        if (loading) return
-        setLoading(true)
-
-        if (!title.trim()) {
-            setErreur('Titre requis');
-            setLoading(false);
-            return
-        }
-
-        if (!mainFile) {
-            setErreur('Image principale requise');
-            setLoading(false)
-        return
-        }
+    try {
+        if (!title.trim()) throw new Error('Titre requis')
+        if (!mainFile) throw new Error('Image principale requise')
 
         const workText = {
             title: title.trim(),
             description: desc.trim(),
             category: category.trim() || null,
+            videoUrl: videoUrl,
+            stackUse: selectedStacks,
+            ghLink: ghLink,
+            wsLink: wsLink,
         }
 
         const formData = new FormData()
         formData.append('work', JSON.stringify(workText))
         formData.append('image', mainFile)
-        secondaryFiles.forEach(file => {
-            formData.append('secondaryImages', file)
-        })
+        secondaryFiles.forEach(file => formData.append('secondaryImages', file))
 
         const rep = await fetch(`${API_URL}/api/work`, {
             method: 'POST',
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
+            headers: { Authorization: `Bearer ${token}` },
             body: formData,
         })
-            if (!rep.ok) {
-                const err = await rep.json().catch(() => ({}))
-                throw new Error(err.error?.message || err.message || 'Erreur upload')
-            }
-        const data = await rep.json()       
+
+        if (!rep.ok) {
+            const err = await rep.json().catch(() => ({}))
+            throw new Error(err.error?.message || err.message || 'Erreur upload')
+        }
+
+        const data = await rep.json()
+        console.log('Upload OK', data)
+
+        // Reset form
         clearPreviewsAndFiles()
         setTitle('')
         setDesc('')
         setCategory('')
+        setVideoUrl('')
+        setSelectedStacks([])
         setIsOpen(false)
-        console.log('Upload OK', data)
-        
-        .catch(err => {
-            console.error('Upload failed:', err)
-            alert('Échec upload — check console')
-            setLoading(false)
-        })
-
+    } catch (err) {
+        console.error('Upload failed:', err)
+        setErreur(err.message)
+    } finally {
+        setLoading(false)
     }
+}
 
     return(
         <>
@@ -184,6 +181,7 @@ export function AddProjectModal(){
                     <div className="upload_image">
                         <label htmlFor="main-image">Ajouter l'image principale</label>
                         <input
+                            className='input'
                             type="file"
                             id="main-image"
                             accept="image/*"
@@ -193,8 +191,9 @@ export function AddProjectModal(){
                     </div>
                     
                     <div className="upload_title">
-                        <label htmlFor="titre">Titre *</label>
-                        <input 
+                        <label htmlFor="titre">Titre</label>
+                        <input
+                            className='input'
                             type="text" 
                             name="titre"  
                             id="titre"
@@ -206,7 +205,8 @@ export function AddProjectModal(){
                     
                     <div className='upload_cat'>
                         <label htmlFor="category">Catégories</label>
-                        <input 
+                        <input
+                            className='input'
                             type="text" 
                             name="category"  
                             id="category"
@@ -217,7 +217,7 @@ export function AddProjectModal(){
                     
                     <div className='upload_area'>
                         <label htmlFor="description">Description</label>
-                        <textarea
+                        <textarea                        
                             id="description"
                             value={desc}
                             onChange={(e) => setDesc(e.target.value)}
@@ -227,6 +227,7 @@ export function AddProjectModal(){
                     <div className="upload_image">
                         <label htmlFor="secondary-images">Ajouter des images secondaires (max {MAX})</label>
                         <input
+                            className='input'
                             type="file"
                             id="secondary-images"
                             accept="image/*"
@@ -237,14 +238,73 @@ export function AddProjectModal(){
                             <p className="file-count">{secondaryFiles.length} fichier(s) sélectionné(s)</p>
                         )}
                     </div>
+
+                    <div className="video_title">
+                        <label htmlFor="video">Url Video</label>
+                        <input 
+                        className='input'
+                            type="video" 
+                            name="video"  
+                            id="video"
+                            value={videoUrl}
+                            onChange={(e) => setVideoUrl(e.target.value)}
+                        />
+                    </div>
                     
                     {erreur && <p className="error-message">{erreur}</p>}
-                    
+                    <fieldset>
+                        <legend>Choisir les stack du projet</legend>
+                        {["html", "css", "javaScript", "react", "node", "mongoDb", "scss", "photoshop", "illustrator", "afterEffect"].map(stack => (
+                            <div key={stack}>
+                            <input
+                                type="checkbox"
+                                id={stack}
+                                name="interest"
+                                value={stack}
+                                checked={selectedStacks.includes(stack)}
+                                onChange={(e) => {
+                                const { value, checked } = e.target;
+                                if (checked) {
+                                    setSelectedStacks([...selectedStacks, value]);
+                                } else {
+                                    setSelectedStacks(selectedStacks.filter(s => s !== value));
+                                }
+                                }}
+                            />
+                            <label htmlFor={stack}>{stack}</label>
+                            </div>
+                        ))}
+                    </fieldset>
+
+                    <div className='gitHub_link'>
+                        <label htmlFor="gitHub_link">Lien Github</label>
+                        <input
+                            className='input'
+                            type="gitHub_link" 
+                            name="gitHub_link"  
+                            id="gitHub_link"
+                            value={ghLink}
+                            onChange={(e) => setGhLink(e.target.value)}
+                        />
+                    </div>
+
+                    <div className='webSite_link'>
+                        <label htmlFor="webSite_link">Lien du site</label>
+                        <input
+                            className='input'
+                            type="webSite_link" 
+                            name="webSite_link"  
+                            id="webSite_link"
+                            value={wsLink}
+                            onChange={(e) => setWsLink(e.target.value)}
+                        />
+                    </div>
+
                     <button type="submit" disabled={loading}>
                         {loading ? 'Envoi en cours...' : 'Valider'}
                     </button>
                 </form>
-            </Modal>
+            </Modal>    
         </>
     )
 }
