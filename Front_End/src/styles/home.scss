@@ -29,13 +29,15 @@
   .filter {
     background-color: v.$color-dark;
     color: v.$color-light;
-    padding: 20px 50px;
+    padding: 20px 20px;
     display: flex;
     justify-content: center;
-    gap: 60px;
-    box-shadow: 8px 8px 0 v.$color-purple;
+    gap: 30px;
     margin-bottom: 0;
+    @include m.media(v.$bp-lg) {
+      flex-direction: column;
 
+    }
     button {
       &.active {
         color: v.$color-yellow;

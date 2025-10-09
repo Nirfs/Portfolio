@@ -1,7 +1,7 @@
 @use '../styles/abstract/variable' as v;
 @use '../styles/abstract/mixins' as m;
 
-.présentation_container{
+.presentation_container{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,20 +16,23 @@
     
     @include m.media(v.$bp-lg) {
         flex-direction: column-reverse;
+        margin: 50px 5%;
+        padding: 50px 20px;
     }
     
     img{
-        width: clamp(300px, 30vw, 550px);
+        width: clamp(250px, 30vw, 550px);
         height: auto;
     }
-    .text_containe{
+    .text_container{
         padding:  20px 20px;
         display: flex;
         flex-direction: column;
         gap: 10px;
-        width: clamp(300px, 24vw, 600px);
         @include m.media(v.$bp-lg) {
-            padding:  10px;
+            align-items: center;
+            justify-content: center;
+            padding:  20px 5px;
         }
     }
 }
