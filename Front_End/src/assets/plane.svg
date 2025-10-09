@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 70 70">
+  <!-- Generator: Adobe Illustrator 29.8.2, SVG Export Plug-In . SVG Version: 2.1.1 Build 3)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #ffe5c9;
+      }
+
+      .st0, .st1, .st2 {
+        stroke: #000;
+        stroke-linejoin: round;
+      }
+
+      .st2 {
+        fill: #d8d9ff;
+      }
+    </style>
+  </defs>
+  <polygon class="st1" points="17.73 54.65 64.23 3.03 23.42 66.27 17.73 54.65"/>
+  <polygon class="st0" points="64.23 3.03 21.48 53.21 51.48 50.6 64.23 3.03"/>
+  <polygon class="st2" points="32.97 52.21 23.42 66.27 21.48 53.21 32.97 52.21"/>
+  <polyline class="st0" points="23.42 66.27 17.73 54.65 3.29 53.82 64.23 3.03 17.73 54.65"/>
+</svg>
