@@ -7,6 +7,10 @@ const workSchema = mongoose.Schema({
     description : {type: String, required: true},
     category: {type: String, required: true},
     secondaryImageUrl: { type: [String], default: [] },
+    stackUse: { type: [String], default: [] },
+    videoUrl: { type: String },
+    ghLink:{ type: String },
+    wsLink:{ type: String },
 })
 
 module.exports = mongoose.model("Work", workSchema)
