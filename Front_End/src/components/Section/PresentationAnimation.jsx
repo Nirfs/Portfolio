@@ -1,0 +1,82 @@
+// Librairies
+import { motion, useAnimation } from "motion/react"
+import { useEffect } from "react"
+
+// Assets
+import portrait from '../../assets/character.svg'
+
+// Composants
+import { ContactModal } from "./ContactModal"
+
+// Styles
+import '../../styles/presentationAnimation.scss'
+
+export function PresentationAnimation() {
+  const controlContainer = useAnimation()
+  const controlImage = useAnimation()
+  const controlTitle = useAnimation()
+  const controlButton = useAnimation()
+
+  useEffect(() => {
+    async function runSequence() {
+      await controlContainer.start({ x: 0, opacity: 1 })
+      await Promise.all([
+        controlImage.start({ y: 0 }),
+        controlTitle.start({ x: 0, opacity: 1 }),
+        controlButton.start({ y: 0, opacity: 1 })
+      ])
+    }
+    runSequence()
+  }, [])
+
+  return (
+    <>
+      <motion.div
+        className='presentation_container'
+        initial={{ x: -250, opacity: 0 }}
+        animate={controlContainer}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+      >
+        <div className="text_container">
+          <motion.h1
+            initial={{ x: -250, opacity: 0 }}
+            animate={controlTitle}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+          >
+            KEVIN PIEPLU
+          </motion.h1>
+
+          <motion.h2
+            initial={{ x: -250, opacity: 0 }}
+            animate={controlTitle}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+          >
+            Développeur front-end
+          </motion.h2>
+
+          <motion.p
+            initial={{ x: -250, opacity: 0 }}
+            animate={controlTitle}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          >
+            Hello ! Je m’appelle Kevin Pieplu, designer graphique et développeur web junior.
+            Passionné d’informatique depuis toujours, je suis curieux, créatif et autonome.
+            J’aime explorer de nouvelles idées, trouver des solutions élégantes à des problèmes complexes
+            et donner vie à des projets à travers le design et le code.
+            Mon objectif : allier esthétique et efficacité pour créer des expériences uniques.
+          </motion.p>
+        </div>
+
+        <motion.img
+          src={portrait}
+          alt='autoportrait dessiné'
+          initial={{ y: 600 }}
+          animate={controlImage}
+          transition={{ duration: 0.4, ease: "easeIn" }}
+        />
+      </motion.div>
+
+      <ContactModal />
+    </>
+  )
+}

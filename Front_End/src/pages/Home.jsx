@@ -1,24 +1,24 @@
-//librairie
+//librairies
 import { useLoaderData } from 'react-router-dom'
-import { useState } from 'react'
-//composant
-import { PresentationAnimation } from '../components/PresentationAnimation'
-import { SkillAnimation } from '../components/SkillAnimation'
-import { Card } from '../components/Card'
-import { AddProjectModal } from '../components/AddProjectModal'
-import { SocialMedia } from '../components/SocialMedia'
+import { useState} from 'react'
+//composants
+import { PresentationAnimation } from '../components/Section/PresentationAnimation'
+import { SkillAnimation } from '../components/Section/SkillAnimation'
+import { Card } from '../components/Card/Card'
+import { AddProjectModal } from '../components/Project_Modal/AddProjectModal'
+import { SocialMedia } from '../components/Section/SocialMedia'
 //assets
 import bg from '../assets/doodle_illustration.svg'
 //styles
 import '../styles/home.scss'
-import { Timeline } from '../components/TimeLine'
+import { Timeline } from '../components/Section/TimeLine'
+
 
 
 export function Home(){
     const worksList = useLoaderData()
     const [filter, setFilter] = useState("all")
     
-    console.log(worksList)
     const filterWork = worksList.filter(work =>
         filter === 'all' ? true : work.category === filter
     )
