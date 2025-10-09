@@ -6,7 +6,6 @@
     display: flex;
     gap: 20px;
     flex-direction: column;
-    border-radius: 25px;
     .skill_logo_container{
         display: flex;
         gap: 20px;
@@ -22,7 +21,7 @@
         color: white;
         background-color: black;
         max-width: 350px;
-        height: 450px;
+        min-height: 450px;
 
         @include m.media(v.$bp-lg) {
             transform: rotate(5deg);
@@ -34,9 +33,7 @@
         background-color: v.$color-purple;
         border: 1px solid v.$color-dark;
         max-width: 350px;
-        height: 450px;
-        border-radius: 25px;
-
+        min-height: 450px;
         @include m.media(v.$bp-lg) {
             transform: rotate(-5deg);
         }
@@ -49,8 +46,7 @@
             background-color: v.$color-grey;
             border: 1px solid v.$color-dark;
             max-width: 350px;
-            height: 450px;
-            border-radius: 25px;
+            min-height: 450px;
     }
 }
 

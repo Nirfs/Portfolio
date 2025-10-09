@@ -75,6 +75,9 @@ a, button {
   text-decoration: none;
   background-color: transparent;
   border: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 .modal_overlay {
   position: fixed;
@@ -85,3 +88,27 @@ a, button {
   z-index: 50;
 }
 
+.input {
+  width: 100%;
+  max-width: 270px;
+  height: 60px;
+  padding: 12px;
+  font-size: 18px;
+  color: #000;
+  background-color: #fff;
+  border: 4px solid #000;
+  border-radius: 0;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 8px 8px 0 #000;
+
+  &:hover{
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0 #000;
+  }
+  &:focus{
+      background-color: #000;
+    color: #fff;
+    border-color: #ffffff;
+  }
+}

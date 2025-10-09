@@ -62,7 +62,7 @@ export function ConnectModal(){
                 <div className='input_grp'>
                     <label htmlFor="email">Adresse e-mail</label>
                     <input 
-                        className="button--submit" 
+                        className="input button--submit" 
                         type="email" 
                         id="email" 
                         name="email" 
@@ -74,6 +74,7 @@ export function ConnectModal(){
                 <div className='input_grp'>
                     <label htmlFor="password">Mot de passe</label>
                     <input 
+                    className='input'
                     type="password" 
                     id="password" 
                     name="password" 
@@ -83,7 +84,7 @@ export function ConnectModal(){
                     />
                 </div>
 
-                <input type="submit" value="Se connecter"/>
+                <input className="input" type="submit" value="Se connecter"/>
 
                 <div className="form-footer">
                 </div>

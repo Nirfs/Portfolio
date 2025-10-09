@@ -2,25 +2,77 @@
 @use '../styles/abstract/mixins' as m;
 
 .work_section{
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    margin: 0;
+    padding-top: 100px;
+    padding-bottom: 120px;
+    
+    iframe{
+        width: 740px;
+        height: 420px;
+        @include m.media(v.$bp-md) {
+            width: 100%;
+            height: 320px;
+        }
+    }
+    .doodle_bg_work{
+        position: absolute;
+        z-index: -1;
+        bottom: 0;
+        right: 0;
+        opacity: 0;
+    }
+    .img_container{
+        border: 4px solid black;
+        padding: 10px;
+        border-radius: 5px;
+        width: 900px;
+    }
     .img_principal{
-        width: 60%;
+        width: 100%;
+        height: 100%;
+        object-fit:cover;
     }
     .text_container{
+        position: relative;
+        top: -80px;
+        border: 1px solid v.$color-dark;
+        background-color: v.$color-light;
+        box-shadow: 8px 8px 0 v.$color-dark;
         padding: 50px;
-        border-radius: 25px;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        margin: 0 25%;
+        max-width: 600px;
+        margin: 0 auto;
         gap: 40px;
+        .stack_preview{
+            display: flex;
+            gap: 20px;
+            .stack_container{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 5px;
+                width: 50px;
+                height: 50px;
+                background-color: v.$color_light;
+                border: 1px solid v.$color-dark;
+                img {        
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
     }
     .work_img_container{
         display: grid;
         grid-template-columns: (repeat(3, 1fr));
+        @include m.media(v.$bp-lg) {
+            grid-template-columns: (repeat(2, 1fr));
+        }
         img{
             object-fit: cover;
             width: 100%;

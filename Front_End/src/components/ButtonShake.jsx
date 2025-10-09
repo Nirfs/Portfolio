@@ -2,12 +2,13 @@ import { motion } from "motion/react"
 import { NavLink } from "react-router-dom"
 //style
 import '../styles/buttonShake.scss'
-export function ButtonShake({bool, text}){
+export function ButtonShake({text, onClick}){
 
-    let isBig = {bool}
-    
     return(
-        <motion.button className={bool ? "big_button_shake" : 'button_shake'}
+        <motion.button 
+            type="button"
+            onClick={onClick}
+            className='button_shake'
             animate={{
                 rotate:[0,-5,5,-5,0]
             }}

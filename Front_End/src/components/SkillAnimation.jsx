@@ -3,9 +3,6 @@ import { SkillCard } from "./SkillsCard"
 import {motion, useScroll, useTransform} from 'motion/react'
 
 //assets
-import reactLogo from '../assets/react_logo.svg'
-import htmlLogo from '../assets/html_logo.svg'
-import cssLogo from '../assets/css_logo.svg'
 import front_end from '../assets/front_end.svg'
 import back_end from '../assets/back_end.svg'
 import design from '../assets/design.svg'
@@ -50,6 +47,7 @@ export function SkillAnimation(){
                             {src:'https://www.svgrepo.com/show/452045/js.svg', alt:'logo javascript'}
                         ]}
                         image_src={front_end}
+                        alt={"picto front end"}
                     />
                 </motion.div>
                 <motion.div
@@ -66,6 +64,7 @@ export function SkillAnimation(){
                             { src: 'https://www.svgrepo.com/show/331488/mongodb.svg', alt: "logo mongoDb" },
                         ]}
                         image_src={back_end}
+                        alt={"picto back end"}
                     />
                 </motion.div>
                 <motion.div
@@ -85,6 +84,7 @@ export function SkillAnimation(){
                             
                         ]}
                         image_src={design}
+                        alt={'picto design'}
                     />
                 </motion.div>
             </div>

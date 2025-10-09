@@ -1,11 +1,12 @@
 //composant
 import { motion, useAnimation, useInView } from "motion/react"
-import { ButtonShake } from './ButtonShake'
+
 //assets
 import portrait from '../assets/character.svg'
 //styles
 import '../styles/presentationAnimation.scss'
 import { useEffect } from "react";
+import { ContactModal } from "./ContactModal";
 
 
 export function PresentationAnimation(){
@@ -103,15 +104,7 @@ export function PresentationAnimation(){
                             }}
                         />
             </motion.div>
-            <motion.div
-                initial={{y: 50, opacity:0}}
-                animate={controlButton}
-                transition={{
-                    duration: 0.3, 
-                    ease: "easeIn"
-                }}>
-                <ButtonShake bool={true} text="contact"/>
-            </motion.div>
+            <ContactModal></ContactModal>
         </>
     )
 }
