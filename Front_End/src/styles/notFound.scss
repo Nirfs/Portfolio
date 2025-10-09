@@ -1,0 +1,17 @@
+@use '../styles/abstract/variable' as v;
+@use '../styles/abstract/mixins' as m;
+
+.error_Container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: v.$color-purple;
+    padding: 50px;
+    border: 1px solid v.$color-dark;
+    width: 50%;
+    margin: 50px auto;   
+    h1{
+        font-size: 20rem;
+    }
+}
