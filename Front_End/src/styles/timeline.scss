@@ -1,0 +1,96 @@
+@use '../styles/abstract/variable' as v;
+@use '../styles/abstract/mixins' as m;
+
+.timeline {
+  position: relative;
+  white-space: nowrap;
+  max-width: 1400px;
+  padding: 0 10px;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 20px;
+  ol {
+    font-size: 0;
+    padding: 250px 0;
+    transition: all 1s;
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    &::-webkit-scrollbar {
+      height: 12px;
+      
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border: 1px solid black;
+        background: v.$color-dark;
+    }
+
+    &::-webkit-scrollbar-track {
+        border: 1px solid black;
+        background: v.$color-light;
+    }
+
+    li {
+      position: relative;
+      display: inline-block;
+      list-style-type: none;
+      width: 220px;
+      height: 5px;
+      background: black;
+      scroll-snap-align: start;
+
+      &:last-child {
+        width: 340px;
+      }
+
+      &:not(:first-child) {
+        margin-left: 14px;
+      }
+
+      &:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        bottom: 0;
+        width: 16px;
+        height: 16px;
+        transform: translateY(-50%);
+        background: black;
+        z-index: 1;
+      }
+
+      div {
+        position: absolute;
+        left: calc(100% + 7px);
+        width: 280px;
+        padding: 15px;
+        white-space: normal;
+        color: #000;
+        background-color: #fff;
+        border: 4px solid #000;
+        box-shadow: 8px 8px 0 #000;
+      }
+
+      &:nth-child(odd) div {
+        top: -16px;
+        transform: translateY(-100%);
+        border-radius: 10px 10px 10px 0;
+      }
+
+      &:nth-child(even) div {
+        top: calc(100% + 16px);
+        border-radius: 0 10px 10px 10px;
+      }
+    }
+  }
+
+  time {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: black;
+  }
+}
