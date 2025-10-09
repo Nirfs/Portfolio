@@ -16,7 +16,7 @@ const normalizePort = val => {
 };
 
 //Recuperer le port
-const port = normalizePort(process.env.PORT ||'3000');
+const port = normalizePort(process.env.PORT);
 //stocke dans l'app Express si besoin
 app.set('port', port);
 
