@@ -1,5 +1,21 @@
 @use './variable.scss' as v;
 
+@font-face {
+  font-family: 'Raleway';
+  src: url('../../assets/fonts/raleway-v37-latin-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Alan Sans';
+  src: url('../../assets/fonts/alan-sans-v1-latin-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 *{
   margin:0;
   padding: 0;
@@ -9,6 +25,10 @@
 body{
   width: 100%;
   font-family: v.$font-primary;
+}
+
+main{
+  overflow: hidden;
 }
 // Styles globaux
 h1 {
@@ -112,3 +132,10 @@ a, button {
     border-color: #ffffff;
   }
 }
+
+  .title {
+        background-color: v.$color-dark;
+        color: v.$color-light;
+        padding:  20px 30px;
+
+  }
