@@ -2,6 +2,7 @@
 import {createBrowserRouter, RouterProvider } from 'react-router-dom';
 //Composants
 import { Home } from '../pages/Home';
+import { HomeWrapper } from '../pages/HomeWrapper';
 import { NotFound } from '../pages/NotFound';
 import { Work } from '../pages/Work';
 import { Layout }  from '../pages/Layout';
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
         children:[
             {
                 index:true,
-                element:<Home/>,
+                element:<HomeWrapper/>,
                 loader: getWork,
                 HydrateFallback: () => null
             },

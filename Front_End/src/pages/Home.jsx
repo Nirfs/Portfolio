@@ -1,5 +1,6 @@
 //librairies
 import { useLoaderData } from 'react-router-dom'
+import { useState } from 'react'
 //composants
 import { HeroSection } from '../components/Section/HeroSection'
 import { SkillsSection } from '../components/Section/SkillsSection'
@@ -13,8 +14,10 @@ import bg from '../assets/doodle_illustration.svg'
 //styles
 import '../styles/home.scss'
 
-export function Home(){
 
+export function Home(){
+    const [loading, setLoading] = useState(true);
+    
     const scrollTo = useScollTo()
     const worksList = useLoaderData()
     
