@@ -6,7 +6,7 @@ const cors = require('cors')
 const authRoutes = require('./routes/auth')
 const worksRoutes = require('./routes/works')
 
-const MONGO_URL = process.env.MONGO_URL;
+const MONGO_URL = process.env.MONGO_URI;
 
 mongoose.connect(MONGO_URL)
     .then(() => console.log('✅ Connecté à MongoDB'))
