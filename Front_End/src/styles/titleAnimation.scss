@@ -1,0 +1,23 @@
+@use '../styles/abstract/variable' as v;
+@use '../styles/abstract/mixins' as m;
+
+.title-section {
+  margin: 50px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    font-size: 2rem;
+    padding: 10px 40px;
+    margin-bottom: 15px;
+    background-color: v.$color-dark;
+    color: v.$color-light;
+  }
+
+  &__text {
+    font-size: 1.1rem;
+    color: #333;
+  }
+}
