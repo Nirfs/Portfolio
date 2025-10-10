@@ -1,50 +1,50 @@
-//styles
+
+//Assets
+import fac from '../../assets/fac.svg'
+import bts from '../../assets/bts.svg'
+import devWeb from '../../assets/dev_web_picto.svg'
+import casus from '../../assets/casus_ludi.svg'
+import melt from '../../assets/meltdown.svg'
+import compas from '../../assets/compas.svg'
+
+//Styles
 import '../../styles/timeline.scss'
 
-export function Timeline(){
-    return(
-        <>
-            <div className="timeline">
-                <ol>
-                    <li>
-                    <div>
-                        <time>2015</time> 
-                        <p><strong>Faculté de psychologie Université de Caen Basse Normandie </strong> <br/> diplome non obtenue</p>
-                    </div>
-                    </li>
-                    <li>
-                        <div>
-                            <time>2016 - 2019</time> 
-                            <p><strong>BTS Design graphique Opt communication et médias numériques</strong> <br/> 3 ans à l'école de design Nantes Atlantique</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <time>2017</time> 
-                            <p><strong>Stagiaire</strong><br/>6 semaine a Casus Ludi.<br/>Réalisation de NewsGame (jeux vidéo). Animation 2D, écriture d'histoire intéractive</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <time>2018 - 2019</time> 
-                            <p> <strong>Alternant puis Graphiste</strong><br/>18 mois à Compas-tis.<br/> Création de video en motion design, mise en page, design web et integration HTML et CSS</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <time>2020 - 2023</time> 
-                            <p><strong>Graphiste</strong><br/>3 ans à Meltdown. Création d'assets graphiques resaux sociaux, illustration, cartes, vidéo promo, textile ...</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <time>2025</time> 
-                            <p><strong>Formation Developpeur web</strong><br/>Openclassroom. Acquisition de compétences en HTML, CSS, JS, REACT, NODE, MONGO DB. Gestion de projet avec la méthode Agile ect..</p>
-                        </div>
-                    </li>
-                    <li></li>
-                </ol>
-            </div>
-        </>
-    )
+const timelineData = [
+  { id: 1, year: '2015', title: 'Faculté de psychologie', icon: fac },
+  { id: 2, year: '2016-2019', title: 'BTS Design graphique', icon: bts },
+  { id: 3, year: '2017', title: 'Stagiaire Casus Ludi', icon: casus },
+  { id: 4, year: '2018-2019', title: 'Graphiste Compas-tis', icon: compas },
+  { id: 5, year: '2020-2023', title: 'Graphiste Meltdown', icon: melt },
+  { id: 6, year: '2025', title: 'Développeur web', icon: devWeb }
+];
+
+function TimelineStep({ year, title, icon, isLast }) {
+  return (
+    <div className="timeline-step">
+      <img className="step-icon" src={icon} alt={`picto pour ${title}`}/>
+      <div className="step-year">{year}</div>
+      <div className="step-title">{title}</div>
+      {!isLast && <div className="step-connector"></div>}
+    </div>
+  );
+}
+
+export default function Timeline() {
+
+  return (
+    <div className="timeline-wrapper">
+      <div className="timeline-horizontal">
+        {timelineData.map((event, index) => (
+          <TimelineStep
+            key={event.id}
+            year={event.year}
+            title={event.title}
+            icon={event.icon}
+            isLast={index === timelineData.length - 1}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
