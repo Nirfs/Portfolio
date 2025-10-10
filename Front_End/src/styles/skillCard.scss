@@ -1,70 +1,98 @@
 @use '../styles/abstract/variable' as v;
 @use '../styles/abstract/mixins' as m;
 
-.card{
-    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+.skill-card {
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px,
+    rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px,
+    rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  max-width: 350px;
+  min-height: 450px;
+  overflow: hidden;
+  background: v.$color-light;
+  color: v.$color-dark;
+
+  &__content {
+    padding: 30px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__title {
+    font-size: v.$h3-size;
+    margin: 0 0 10px 0;
+  }
+
+  &__desc {
+    margin: 0;
+  }
+
+  &__techs {
     display: flex;
     gap: 20px;
-    flex-direction: column;
-    .skill_logo_container{
-        display: flex;
-        gap: 20px;
-    }
-    .picto_skill{
-        width: 70%;
-        align-self: center;
-        justify-content: end;
-    }
-    
-    &.front_end{
-   
-        color: white;
-        background-color: black;
-        max-width: 350px;
-        min-height: 450px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
 
-        @include m.media(v.$bp-lg) {
-            transform: rotate(5deg);
-        }
-
-    }
-    &.back_end{
-        color: v.$color-dark;
-        background-color: v.$color-purple;
-        border: 1px solid v.$color-dark;
-        max-width: 350px;
-        min-height: 450px;
-        @include m.media(v.$bp-lg) {
-            transform: rotate(-5deg);
-        }
-    }
-        &.design{
-            position: relative;
-            right: 20px;
-            transform: rotate(5deg);
-            color: v.$color-dark;
-            background-color: v.$color-grey;
-            border: 1px solid v.$color-dark;
-            max-width: 350px;
-            min-height: 450px;
-    }
-}
-
-.techno_container{
+  &__tech {
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
     width: 50px;
     height: 50px;
-    background-color: v.$color_light;
+    background-color: v.$color-light;
     border: 1px solid v.$color-dark;
-    img {        
-        width: 30px;
-        height: 30px;
-    }
-}
 
-.skill_content_container{
-    padding: 30px;
+    &-img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      display: block;
+    }
+  }
+
+  &__picto {
+    width: 70%;
+    align-self: center;
+    justify-content: end;
+    object-fit: contain;
+    z-index: 1;
+  }
+
+  &.front_end {
+    color: v.$color-light;
+    background-color: v.$color-dark;
+    @include m.media(v.$bp-lg) {
+    transform: rotate(5deg);
+    }
+  }
+
+  &.back_end {
+    color: v.$color-dark;
+    background-color: v.$color-purple;
+    border: 1px solid v.$color-dark;
+    @include m.media(v.$bp-lg) {
+      transform: rotate(-5deg);
+    }
+  }
+
+  &.design {
+    position: relative;
+    right: 20px;
+    transform: rotate(5deg);
+    color: v.$color-dark;
+    background-color: v.$color-grey;
+    border: 1px solid v.$color-dark;
+  }
+}
+.skill-card__tech-img {
+  width: 30px;
+  height: 30px;
 }

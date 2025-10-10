@@ -1,9 +1,12 @@
-//librairie
+//librairies
 import { Link } from 'react-router-dom'
-//style
+//Composants
+import { useScollTo } from '../hook/useScollTo'
+//styles
 import '../styles/notFound.scss'
 
 export function NotFound(){
+    const scrollTo = useScollTo()
     return(
         <>
             <div className="error_Container">

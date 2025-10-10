@@ -1,10 +1,9 @@
 // Librairies
 import { useState } from 'react'
 import Modal from 'react-modal'
-
 // Composants
 import { useAuth } from '../../context/AuthProvider'
-
+import { loginUser } from '../../api/fetch';
 // Styles
 import '../../styles/connectModal.scss'
 
@@ -22,26 +21,14 @@ export function ConnectModal(){
 
         e.preventDefault()
         
-        const res = await fetch("http://localhost:4000/api/auth/login", {
-                method: "POST",
-                headers: {
-                "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email, password }),
-            })
-
-      if (!res.ok) {
-        const errBody = await res.json().catch(() => ({}));
-        throw new Error(errBody.message || "Identifiants invalides");
-      }
-
-        const data = await res.json()
-        if (!data.token) throw new Error("Réponse serveur invalide")
-        
-        login(data.token);  
-        handleClose();
-    }
-
+         try {
+            const token = await loginUser(email, password);
+            login(token);
+            handleClose();
+        } catch (err) {
+            alert(err.message);
+        }
+    };
     
     return(
     <>

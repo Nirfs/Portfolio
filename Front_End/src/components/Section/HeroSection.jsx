@@ -1,46 +1,46 @@
 // Librairies
-import { motion, useAnimation } from "motion/react"
-import { useEffect } from "react"
+import { motion, useAnimation } from "motion/react";
+import { useEffect } from "react";
 
 // Assets
-import portrait from '../../assets/character.svg'
+import portrait from '../../assets/character.svg';
 
 // Composants
-import { ContactModal } from "./ContactModal"
+import { ContactModal } from "./ContactModal";
 
 // Styles
-import '../../styles/presentationAnimation.scss'
+import '../../styles/heroSection.scss';
 
-export function PresentationAnimation() {
-  const controlContainer = useAnimation()
-  const controlImage = useAnimation()
-  const controlTitle = useAnimation()
-  const controlButton = useAnimation()
+export function HeroSection() {
+  const containerControls = useAnimation();
+  const imageControls = useAnimation();
+  const textControls = useAnimation();
+  const buttonControls = useAnimation();
 
   useEffect(() => {
     async function runSequence() {
-      await controlContainer.start({ x: 0, opacity: 1 })
+      await containerControls.start({ x: 0, opacity: 1 });
       await Promise.all([
-        controlImage.start({ y: 0 }),
-        controlTitle.start({ x: 0, opacity: 1 }),
-        controlButton.start({ y: 0, opacity: 1 })
-      ])
+        imageControls.start({ y: 0 }),
+        textControls.start({ x: 0, opacity: 1 }),
+        buttonControls.start({ y: 0, opacity: 1 })
+      ]);
     }
-    runSequence()
-  }, [])
+    runSequence();
+  }, []);
 
   return (
     <>
-      <motion.div
-        className='presentation_container'
+      <motion.section
+        className="hero-section"
         initial={{ x: -250, opacity: 0 }}
-        animate={controlContainer}
+        animate={containerControls}
         transition={{ duration: 0.4, ease: "easeOut" }}
       >
-        <div className="text_container">
+        <div className="hero-section__text">
           <motion.h1
             initial={{ x: -250, opacity: 0 }}
-            animate={controlTitle}
+            animate={textControls}
             transition={{ duration: 0.6, ease: "easeInOut" }}
           >
             KEVIN PIEPLU
@@ -48,7 +48,7 @@ export function PresentationAnimation() {
 
           <motion.h2
             initial={{ x: -250, opacity: 0 }}
-            animate={controlTitle}
+            animate={textControls}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             Développeur front-end
@@ -56,7 +56,7 @@ export function PresentationAnimation() {
 
           <motion.p
             initial={{ x: -250, opacity: 0 }}
-            animate={controlTitle}
+            animate={textControls}
             transition={{ duration: 0.4, ease: "easeInOut" }}
           >
             Hello ! Je m’appelle Kevin Pieplu, designer graphique et développeur web junior.
@@ -68,15 +68,16 @@ export function PresentationAnimation() {
         </div>
 
         <motion.img
+          className="hero-section__portrait"
           src={portrait}
           alt='autoportrait dessiné'
           initial={{ y: 600 }}
-          animate={controlImage}
+          animate={imageControls}
           transition={{ duration: 0.4, ease: "easeIn" }}
         />
-      </motion.div>
+      </motion.section>
 
       <ContactModal />
     </>
-  )
+  );
 }

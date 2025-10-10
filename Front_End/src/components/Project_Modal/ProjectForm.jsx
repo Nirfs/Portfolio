@@ -1,10 +1,13 @@
+//Librairies
 import { useState, useEffect } from 'react'
+//Composants
 import { FileInput } from './FileInput'
 import { StackSelector } from './StackSelector'
+import { createWork } from '../../api/fetch'; 
+//Styles
 import '../../styles/projectForm.scss'
 
 export function ProjectForm({ onClose }) {
-  const API_URL = 'http://localhost:4000'
   const MAX_SIZE = 5 * 1024 * 1024
   const MAX_FILES = 6
 
@@ -35,57 +38,47 @@ export function ProjectForm({ onClose }) {
     setSecondaryFiles([])
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    if (loading) return
-    setLoading(true)
-    try {
-      if (!title.trim()) throw new Error('Titre requis')
-      if (!mainFile) throw new Error('Image principale requise')
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (loading) return;
+  setLoading(true);
 
-      const workText = {
-        title: title.trim(),
-        description: desc.trim(),
-        category: category.trim() || null,
-        videoUrl,
-        stackUse: selectedStacks,
-        ghLink,
-        wsLink,
-      }
+  try {
+    if (!title.trim()) throw new Error('Titre requis');
+    if (!mainFile) throw new Error('Image principale requise');
 
-      const formData = new FormData()
-      formData.append('work', JSON.stringify(workText))
-      formData.append('image', mainFile)
-      secondaryFiles.forEach((file) => formData.append('secondaryImages', file))
+    const workText = {
+      title: title.trim(),
+      description: desc.trim(),
+      category: category.trim() || null,
+      videoUrl,
+      stackUse: selectedStacks,
+      ghLink,
+      wsLink,
+    };
 
-      const token = localStorage.getItem('token') // ou ton hook
-      const rep = await fetch(`${API_URL}/api/work`, {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
-        body: formData,
-      })
+    const formData = new FormData();
+    formData.append('work', JSON.stringify(workText));
+    formData.append('image', mainFile);
+    secondaryFiles.forEach((file) => formData.append('secondaryImages', file));
 
-      if (!rep.ok) {
-        const err = await rep.json().catch(() => ({}))
-        throw new Error(err.error?.message || err.message || 'Erreur upload')
-      }
+    await createWork(formData);
 
-      await rep.json()
-      clearPreviewsAndFiles()
-      setTitle('')
-      setDesc('')
-      setCategory('')
-      setVideoUrl('')
-      setGhLink('')
-      setWsLink('')
-      setSelectedStacks([])
-      onClose()
-    } catch (err) {
-      setErreur(err.message)
-    } finally {
-      setLoading(false)
-    }
+    clearPreviewsAndFiles();
+    setTitle('');
+    setDesc('');
+    setCategory('');
+    setVideoUrl('');
+    setGhLink('');
+    setWsLink('');
+    setSelectedStacks([]);
+    onClose();
+  } catch (err) {
+    setErreur(err.message);
+  } finally {
+    setLoading(false);
   }
+};
 
   return (
     <form onSubmit={handleSubmit} className="upload_form">

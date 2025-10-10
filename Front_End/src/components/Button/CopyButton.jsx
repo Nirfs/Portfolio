@@ -1,30 +1,31 @@
-
 // Librairies
-import { useState } from "react"
+import { useState } from "react";
 
-//Styles
-import '../../styles/copyButton.scss'
+// Styles
+import '../../styles/copyButton.scss';
 
-export function CopyButton ({ text }){
-    const [isCopied, setIsCopied] = useState(false)
+export function CopyButton({ text }) {
+  const [isCopied, setIsCopied] = useState(false);
 
-    const handleCopy = async () => {
-        try {
-            await navigator.clipboard.writeText(text)
-            setIsCopied(true)
-            setTimeout(() => setIsCopied(false), 2000)
-        } catch (err) {
-            console.error("Erreur lors de la copie :", err)
-        }
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch (err) {
+      console.error("Erreur lors de la copie :", err);
     }
+  };
 
-    return (
-
+  return (
     <div className="button_copy">
-        <p type="text" value={text} readOnly>{text}</p>
-        <button onClick={handleCopy}>
-            {isCopied ? "Copié !" : "Copier"}
-        </button>
+      <p type="text" value={text}>
+        {text}
+      </p>
+
+      <button type="button" onClick={handleCopy}>
+        {isCopied ? "Copié !" : "Copier"}
+      </button>
     </div>
-    ) 
+  );
 }

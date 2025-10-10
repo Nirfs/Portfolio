@@ -1,51 +1,37 @@
-//Librairie
-import { NavLink, useLocation  } from "react-router-dom"
-import { useEffect, useState } from "react";
+// Librairies
+import { NavLink, useLocation } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
-//composant
+// Composants
 import { ConnectModal } from "../Login_signup/ConnectModal";
-import { useScreenWidth } from '../../context/ScreenWidthProvider'
-//assets
-import logo from '../../assets/logo_animation.gif'
-import logoStatick from '../../assets/logo.webp'
-//styles
-import '../../styles/header.scss'
+import { useScreenWidth } from '../../context/ScreenWidthProvider';
+// Assets
+import logoStatic from '../../assets/logo.webp';
 
+// Styles
+import '../../styles/header.scss';
 
+export function Header() {
+  const screenWidth = useScreenWidth();
+  const isMobile = screenWidth < 1025;
+  const location = useLocation();
 
-
-export function Header(){
-    const screenWidth = useScreenWidth()
-    const isMobile = screenWidth < 1025
-
-    const location = useLocation()
-    const [gifEnd, setGifEnd] = useState(false)
-
-    console.log(screenWidth)
-
-    useEffect(() => {
-        const img = new Image();
-        img.src = logoStatick;
-        
-        const timer = setTimeout(() => {
-            setGifEnd(true)
-        }, 1800);
-        return() => clearTimeout(timer)
-    },[])
-
-    return(
-        <header>
-            <img src={!gifEnd ? logo : logoStatick} alt='logo animée'/>
-            <nav>
-                <NavLink to={'/'}>Acceuil</NavLink>
-                {!isMobile && location.pathname === "/" && (
-                    <>
-                        <HashLink smooth to="#travaux">Travaux</HashLink>
-                        <HashLink smooth to="#competences">Compétences</HashLink> 
-                    </>
-                )}
-                <ConnectModal/>
-            </nav>
-        </header>
-    )
+  return (
+    <header className="site-header">
+      <img 
+        className="site-header__logo" 
+        src={logoStatic} 
+        alt="Logo animée" 
+      />
+      <nav className="site-header__nav">
+        <NavLink to="/" className="site-header__link">Accueil</NavLink>
+        {!isMobile && location.pathname === "/" && (
+          <>
+            <HashLink smooth to="#travaux" className="site-header__link">Travaux</HashLink>
+            <HashLink smooth to="#competences" className="site-header__link">Compétences</HashLink>
+          </>
+        )}
+        <ConnectModal />
+      </nav>
+    </header>
+  );
 }

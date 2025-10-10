@@ -3,18 +3,16 @@ import { useState, useEffect, createContext, useContext } from "react";
 export const ScreenWidthContext = createContext()
 
 export function ScreenWidthProvider({ children }) {
-    const getInitialWidth = () => (typeof window !== "undefined" ? window.innerWidth : 0);
-    const [screenWidth, setScreenWidth] = useState(getInitialWidth)
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth)
 
     useEffect(() => {
-    let timeout;
-    function handleResize() {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => setScreenWidth(window.innerWidth), 100);
-    }
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-    }, []);
+        function handleResize() {
+        setScreenWidth(window.innerWidth)
+        }
+
+        window.addEventListener("resize", handleResize)
+        return () => window.removeEventListener("resize", handleResize)
+    }, [])
 
     return (
         <ScreenWidthContext.Provider value={screenWidth}>

@@ -1,13 +1,24 @@
-header{
+@use '../styles/abstract/variable' as v;
+@use '../styles/abstract/mixins' as m;
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 10%;
+
+  @include m.media(v.$bp-lg) {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__logo {
+    width: 50px;
+  }
+
+  &__nav {
     display: flex;
-    justify-content: space-between;
-    margin: 0 10%;
+    gap: 30px;
     align-items: center;
-    img{
-        width: 50px;
-    }
-    nav{
-        display: flex;
-        gap: 30px;
-    }
+  }
 }

@@ -7,18 +7,19 @@ import front_end from '../../assets/front_end.svg'
 import back_end from '../../assets/back_end.svg'
 import design from '../../assets/design.svg'
 //styles
-import '../../styles/skillAnimation.scss'
+import '../../styles/skillsSection.scss'
 
-export function SkillAnimation(){
+export function SkillsSection(){
     const {scrollYProgress} = useScroll()
 
-    const y1 = useTransform(scrollYProgress, [.4, 0], [0, 200])
-    const y2 = useTransform(scrollYProgress, [.4, 0], [0, 300])
-    const y3 = useTransform(scrollYProgress, [.4, 0], [0, 100])
-    const x1 = useTransform(scrollYProgress, [.4, 0], [0, -200])
-    const x2 = useTransform(scrollYProgress, [.4, 0], [0, 300])
-    const x3 = useTransform(scrollYProgress, [.4, 0], [0, 100])
+    const y1 = useTransform(scrollYProgress, [.1, 0], [0, 200])
+    const y2 = useTransform(scrollYProgress, [.2, 0], [0, 300])
+    const y3 = useTransform(scrollYProgress, [.3, 0], [0, 100])
+    const x1 = useTransform(scrollYProgress, [.2, 0], [0, -200])
+    const x2 = useTransform(scrollYProgress, [.3, 0], [0, 300])
+    const x3 = useTransform(scrollYProgress, [.2, 0], [0, 100])
     return(
+        
         <>
             <motion.div 
                 className="skill_header"
@@ -26,8 +27,6 @@ export function SkillAnimation(){
                         y: y1,
                     }}
                 >
-                <h2>COMPÉTENCES</h2>
-                <p>Petit tour d’horizon de mes compétences, entre design et développement.</p>
             </motion.div>
             <div className="skill_card_container">
                 <motion.div

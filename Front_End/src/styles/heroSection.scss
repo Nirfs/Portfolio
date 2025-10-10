@@ -1,0 +1,42 @@
+@use '../styles/abstract/variable' as v;
+@use '../styles/abstract/mixins' as m;
+
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  background-color: v.$color-yellow;
+  padding: 50px 15px;
+  margin: 0 90px;
+  overflow: hidden;
+  border: 2px solid black;
+  color: #000;
+  box-shadow: 8px 8px 0 #000;
+
+  @include m.media(v.$bp-lg) {
+    flex-direction: column-reverse;
+    margin: 50px 5%;
+    padding: 50px 20px;
+  }
+
+  &__portrait {
+    width: clamp(250px, 30vw, 550px);
+    height: auto;
+  }
+
+  &__text {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 500px;
+
+    @include m.media(v.$bp-lg) {
+      align-items: center;
+      justify-content: center;
+      padding: 20px 5px;
+      text-align: center;
+    }
+  }
+}

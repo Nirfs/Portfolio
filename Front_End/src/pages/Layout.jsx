@@ -1,6 +1,6 @@
 //Librairies
 import { Outlet } from 'react-router-dom';
-//Composant
+//Composants
 import { Header } from '../components/Layout/Header';
 import { Footer } from '../components/Layout/Footer';
 //styles
