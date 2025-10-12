@@ -6,17 +6,32 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
 
   &__title {
-    font-size: 2rem;
-    padding: 10px 40px;
-    margin-bottom: 15px;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    padding: 0.5rem 2.5rem;
+    margin-bottom: 1rem;
     background-color: v.$color-dark;
     color: v.$color-light;
+    font-weight: bold;
+    text-transform: uppercase;
   }
 
   &__text {
-    font-size: 1.1rem;
-    color: #333;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    color: v.$color-dark;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+
+  @include m.media(v.$bp-lg) {
+    &__title {
+      padding: 0.5rem 1.5rem;
+    }
+
+    &__text {
+      text-align: center;
+    }
   }
 }

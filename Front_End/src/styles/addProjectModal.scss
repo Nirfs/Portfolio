@@ -2,20 +2,27 @@
 @use '../styles/abstract/mixins' as m;
 
 .add_modal_content {
-    
-    max-height: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: v.$color-purple;
-    border: 2px v.$color-dark solid;
-    color: v.$color-dark;
-    width: min(90vw, 520px);
-    border-radius: 5px;
-    padding: 20px;
-    outline: none;
-    transform: translateY(0);
-    transition: opacity 150ms ease, transform 150ms ease;
-    overflow-y: scroll;
+  max-height: 600px;
+  width: min(90vw, 520px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 5px;
 
+  background-color: v.$color-purple;
+  border: 2px solid v.$color-dark;
+  color: v.$color-dark;
+
+  outline: none;
+  transform: translateY(0);
+  transition: opacity 150ms ease, transform 150ms ease;
+
+  overflow-y: auto;
+
+  // Responsive (mixin ou media query)
+  @media (max-width: v.$bp-sm) {
+    width: 95vw;
+    padding: 15px;
+  }
 }

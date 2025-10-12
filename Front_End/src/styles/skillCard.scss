@@ -2,26 +2,27 @@
 @use '../styles/abstract/mixins' as m;
 
 .skill-card {
-  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px,
-    rgba(0, 0, 0, 0.09) 0px 4px 2px,
-    rgba(0, 0, 0, 0.09) 0px 8px 4px,
-    rgba(0, 0, 0, 0.09) 0px 16px 8px,
-    rgba(0, 0, 0, 0.09) 0px 32px 16px;
   display: flex;
-  gap: 20px;
   flex-direction: column;
+  gap: 20px;
   max-width: 350px;
   min-height: 450px;
   overflow: hidden;
   background: v.$color-light;
   color: v.$color-dark;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px,
+              rgba(0, 0, 0, 0.09) 0px 4px 2px,
+              rgba(0, 0, 0, 0.09) 0px 8px 4px,
+              rgba(0, 0, 0, 0.09) 0px 16px 8px,
+              rgba(0, 0, 0, 0.09) 0px 32px 16px;
+              transition: all 0.3s ease;
 
   &__content {
-    padding: 30px;
-    z-index: 2;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    padding: 30px;
+    z-index: 2;
   }
 
   &__title {
@@ -35,8 +36,8 @@
 
   &__techs {
     display: flex;
-    gap: 20px;
     flex-wrap: wrap;
+    gap: 20px;
     margin-top: 8px;
   }
 
@@ -44,9 +45,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
     width: 50px;
     height: 50px;
+    border-radius: 5px;
     background-color: v.$color-light;
     border: 1px solid v.$color-dark;
 
@@ -54,23 +55,23 @@
       width: 30px;
       height: 30px;
       object-fit: contain;
-      display: block;
     }
   }
 
   &__picto {
     width: 70%;
     align-self: center;
-    justify-content: end;
     object-fit: contain;
     z-index: 1;
   }
 
+  // Variantes de cartes
   &.front_end {
     color: v.$color-light;
     background-color: v.$color-dark;
-    @include m.media(v.$bp-lg) {
     transform: rotate(5deg);
+    @include m.media(v.$bp-sm) {
+      transform: rotate(0deg);
     }
   }
 
@@ -78,21 +79,22 @@
     color: v.$color-dark;
     background-color: v.$color-purple;
     border: 1px solid v.$color-dark;
-    @include m.media(v.$bp-lg) {
-      transform: rotate(-5deg);
+    transform: rotate(-5deg);
+    @include m.media(v.$bp-sm) {
+      transform: rotate(0deg);
     }
   }
 
   &.design {
-    position: relative;
-    right: 20px;
-    transform: rotate(5deg);
+    position: relative; 
     color: v.$color-dark;
     background-color: v.$color-grey;
     border: 1px solid v.$color-dark;
+    transform: rotate(5deg);
+    right: 20px;
+    @include m.media(v.$bp-sm) {
+      transform: rotate(0deg);
+      right: 0px;
+    }
   }
-}
-.skill-card__tech-img {
-  width: 30px;
-  height: 30px;
 }

@@ -52,6 +52,27 @@ export async function loginUser(email, password) {
   }
 }
 
+export async function SignUp(email, password){
+try {
+    const res = await fetch(`${apiUrl}/api/auth/signup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || data.message || "Création de compte impossible");
+    }
+
+    return data;
+  } catch (err) {
+    console.error(err);
+    throw new Error(err.message || "Erreur réseau");
+  }
+}
+
 export async function deleteWork(id, token) {
   try{
     const response = await fetch(`${apiUrl}/api/work/${id}`, {

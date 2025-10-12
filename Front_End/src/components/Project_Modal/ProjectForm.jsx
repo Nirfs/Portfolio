@@ -1,13 +1,26 @@
-//Librairies
-import { useState, useEffect } from 'react'
-//Composants
-import { FileInput } from './FileInput'
-import { StackSelector } from './StackSelector'
-import { createWork } from '../../api/fetch'; 
-//Styles
-import '../../styles/projectForm.scss'
+// Librairies
+import { useState, useEffect } from "react"
 
-export function ProjectForm({ onClose, onWorkCreated  }) {
+// Composants
+import { FileInput } from "./FileInput"
+import { StackSelector } from "./StackSelector"
+import { createWork } from "../../api/fetch"
+
+// Styles
+import "../../styles/projectForm.scss"
+
+/**
+ * Formulaire pour ajouter un projet avec image principale, images secondaires,
+ * catégorie, description, liens, vidéo et technologies utilisées.
+ *
+ * @component
+ * @param {Object} props
+ * @param {Function} props.onClose - Fonction pour fermer le formulaire/modal.
+ * @param {Function} [props.onWorkCreated] - Fonction appelée après la création d'un projet.
+ * @returns {JSX.Element} Composant ProjectForm.
+ */
+
+export function ProjectForm({ onClose, onWorkCreated }) {
   const MAX_SIZE = 5 * 1024 * 1024
   const MAX_FILES = 6
 
@@ -16,14 +29,14 @@ export function ProjectForm({ onClose, onWorkCreated  }) {
   const [secondaryFiles, setSecondaryFiles] = useState([])
   const [selectedStacks, setSelectedStacks] = useState([])
 
-  const [title, setTitle] = useState('')
-  const [desc, setDesc] = useState('')
-  const [category, setCategory] = useState('')
-  const [videoUrl, setVideoUrl] = useState('')
-  const [ghLink, setGhLink] = useState('')
-  const [wsLink, setWsLink] = useState('')
+  const [title, setTitle] = useState("")
+  const [desc, setDesc] = useState("")
+  const [category, setCategory] = useState("")
+  const [videoUrl, setVideoUrl] = useState("")
+  const [ghLink, setGhLink] = useState("")
+  const [wsLink, setWsLink] = useState("")
   const [loading, setLoading] = useState(false)
-  const [erreur, setErreur] = useState('')
+  const [erreur, setErreur] = useState("")
 
   useEffect(() => {
     return () => {
@@ -38,52 +51,51 @@ export function ProjectForm({ onClose, onWorkCreated  }) {
     setSecondaryFiles([])
   }
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
-  if (loading) return;
-  setLoading(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if (loading) return
+    setLoading(true)
 
-  try {
-    if (!title.trim()) throw new Error('Titre requis');
-    if (!mainFile) throw new Error('Image principale requise');
+    try {
+      if (!title.trim()) throw new Error("Titre requis")
+      if (!mainFile) throw new Error("Image principale requise")
 
-    const workText = {
-      title: title.trim(),
-      description: desc.trim(),
-      category: category.trim() || null,
-      videoUrl,
-      stackUse: selectedStacks,
-      ghLink,
-      wsLink,
-    };
-
-    const formData = new FormData();
-    formData.append('work', JSON.stringify(workText));
-    formData.append('image', mainFile);
-    secondaryFiles.forEach((file) => formData.append('secondaryImages', file));
-
-    await createWork(formData);
-
-
-      if (onWorkCreated) {
-        onWorkCreated();
+      const workText = {
+        title: title.trim(),
+        description: desc.trim(),
+        category: category.trim() || null,
+        videoUrl,
+        stackUse: selectedStacks,
+        ghLink,
+        wsLink,
       }
 
-    clearPreviewsAndFiles();
-    setTitle('');
-    setDesc('');
-    setCategory('');
-    setVideoUrl('');
-    setGhLink('');
-    setWsLink('');
-    setSelectedStacks([]);
-    onClose();
-  } catch (err) {
-    setErreur(err.message);
-  } finally {
-    setLoading(false);
+      const formData = new FormData()
+      formData.append("work", JSON.stringify(workText))
+      formData.append("image", mainFile)
+      secondaryFiles.forEach((file) => formData.append("secondaryImages", file))
+
+      await createWork(formData)
+
+      if (onWorkCreated) {
+        onWorkCreated()
+      }
+
+      clearPreviewsAndFiles()
+      setTitle("")
+      setDesc("")
+      setCategory("")
+      setVideoUrl("")
+      setGhLink("")
+      setWsLink("")
+      setSelectedStacks([])
+      onClose()
+    } catch (err) {
+      setErreur(err.message)
+    } finally {
+      setLoading(false)
+    }
   }
-};
 
   return (
     <form onSubmit={handleSubmit} className="upload_form">
@@ -96,10 +108,11 @@ export function ProjectForm({ onClose, onWorkCreated  }) {
         maxSize={MAX_SIZE}
         required
       />
+
       <div className="upload_title">
         <label htmlFor="titre">Titre</label>
         <input
-          className='input'
+          className="input"
           id="titre"
           type="text"
           value={title}
@@ -107,20 +120,22 @@ export function ProjectForm({ onClose, onWorkCreated  }) {
           required
         />
       </div>
+
       <div className="upload_cat">
         <label htmlFor="category">Catégorie</label>
         <input
-          className='input'
+          className="input"
           id="category"
           type="text"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         />
       </div>
+
       <div className="upload_area">
         <label htmlFor="description">Description</label>
         <textarea
-          className='input'
+          className="input"
           id="description"
           value={desc}
           onChange={(e) => setDesc(e.target.value)}
@@ -138,7 +153,7 @@ export function ProjectForm({ onClose, onWorkCreated  }) {
       <div className="video_title">
         <label htmlFor="video">Url Video</label>
         <input
-          className='input'
+          className="input"
           id="video"
           type="text"
           value={videoUrl}
@@ -151,17 +166,18 @@ export function ProjectForm({ onClose, onWorkCreated  }) {
       <div className="gitHub_link">
         <label htmlFor="gitHub_link">Lien Github</label>
         <input
-          className='input'
+          className="input"
           id="gitHub_link"
           type="text"
           value={ghLink}
           onChange={(e) => setGhLink(e.target.value)}
         />
       </div>
+
       <div className="webSite_link">
         <label htmlFor="webSite_link">Lien du site</label>
         <input
-          className='input'
+          className="input"
           id="webSite_link"
           type="text"
           value={wsLink}
@@ -171,8 +187,8 @@ export function ProjectForm({ onClose, onWorkCreated  }) {
 
       {erreur && <p className="error-message">{erreur}</p>}
 
-      <button style={{marginTop: '20px'}}className='input' type="submit" disabled={loading}>
-        {loading ? 'Envoi en cours...' : 'Valider'}
+      <button style={{ marginTop: "20px" }} className="input" type="submit" disabled={loading}>
+        {loading ? "Envoi en cours..." : "Valider"}
       </button>
     </form>
   )

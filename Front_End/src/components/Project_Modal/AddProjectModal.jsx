@@ -1,18 +1,34 @@
-import { useState } from 'react'
-import Modal from 'react-modal'
-import { useAuth } from '../../context/AuthProvider'
-import { ProjectForm } from './ProjectForm'
-import '../../styles/addProjectModal.scss'
+// Librairies
+import { useState } from "react"
+import Modal from "react-modal"
 
-export function AddProjectModal({onWorkCreated }) {
+// Composants
+import { useAuth } from "../../context/AuthProvider"
+import { ProjectForm } from "./ProjectForm"
+
+// Styles
+import "../../styles/addProjectModal.scss"
+
+/**
+ * Modal permettant d'ajouter un projet.
+ * Affiche un bouton pour ouvrir le modal et le formulaire ProjectForm.
+ * Ne s'affiche que si l'utilisateur est authentifié.
+ *
+ * @component
+ * @param {Object} props
+ * @param {Function} props.onWorkCreated - Fonction appelée après la création d'un projet.
+ * @returns {JSX.Element|null} Composant AddProjectModal ou null si pas de token.
+ */
+
+export function AddProjectModal({ onWorkCreated }) {
   const [isOpen, setIsOpen] = useState(false)
   const { token } = useAuth()
-  
+
   if (!token) return null
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)} className="open-modal-btn">
+      <button onClick={() => setIsOpen(true)} className="open-modal-btn input">
         Ajouter un projet
       </button>
 
@@ -26,9 +42,9 @@ export function AddProjectModal({onWorkCreated }) {
         closeTimeoutMS={160}
       >
         <h3>Ajouter un projet</h3>
-        <ProjectForm 
-        onClose={() => setIsOpen(false)}
-        onWorkCreated={onWorkCreated}
+        <ProjectForm
+          onClose={() => setIsOpen(false)}
+          onWorkCreated={onWorkCreated}
         />
       </Modal>
     </>

@@ -1,27 +1,42 @@
-import { useState, createContext, useContext } from "react";
+// Librairies
+import { useState, createContext, useContext } from "react"
 
+// Création du contexte Auth
 const AuthContext = createContext(null)
 
-export function AuthProvider ({children}){
-    const [token, setToken] = useState(localStorage.getItem("token"))
+/**
+ * Fournit le contexte d'authentification à l'application
+ * 
+ * @param {object} props
+ * @param {React.ReactNode} props.children
+ * @returns {JSX.Element}
+ */
 
-    const login = (token) => {
-        setToken(token)
-        localStorage.setItem('token', token)
-    }
+export function AuthProvider({ children }) {
+  const [token, setToken] = useState(localStorage.getItem("token"))
 
-    const logout =() => {
-        setToken(null)
-        localStorage.removeItem('token')
-    }
+  const login = (token) => {
+    setToken(token)
+    localStorage.setItem("token", token)
+  }
 
-    return(
-        <AuthContext.Provider value={{token, login, logout}}>
-            {children}
-        </AuthContext.Provider>
-    )
+  const logout = () => {
+    setToken(null)
+    localStorage.removeItem("token")
+  }
+
+  return (
+    <AuthContext.Provider value={{ token, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
-export function useAuth(){
-    return useContext(AuthContext)
+/**
+ * Hook pour accéder facilement au contexte d'authentification
+ * 
+ * @returns {{token: string|null, login: function, logout: function}}
+ */
+export function useAuth() {
+  return useContext(AuthContext)
 }

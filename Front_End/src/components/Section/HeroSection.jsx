@@ -1,33 +1,41 @@
 // Librairies
-import { motion, useAnimation } from "motion/react";
-import { useEffect } from "react";
+import { motion, useAnimation } from "motion/react"
+import { useEffect } from "react"
 
 // Assets
-import portrait from '../../assets/characterAnime.svg';
+import portrait from "../../assets/characterAnime.svg"
 
 // Composants
-import { ContactModal } from "./ContactModal";
+import { ContactModal } from "./ContactModal"
 
 // Styles
-import '../../styles/heroSection.scss';
+import "../../styles/heroSection.scss"
+
+/**
+ * Section d'accueil du site avec animation.
+ * Contient le nom, la description et un portrait animé.
+ *
+ * @component
+ * @returns {JSX.Element} Composant HeroSection.
+ */
 
 export function HeroSection() {
-  const containerControls = useAnimation();
-  const imageControls = useAnimation();
-  const textControls = useAnimation();
-  const buttonControls = useAnimation();
+  const containerControls = useAnimation()
+  const imageControls = useAnimation()
+  const textControls = useAnimation()
+  const buttonControls = useAnimation()
 
   useEffect(() => {
     async function runSequence() {
-      await containerControls.start({ x: 0, opacity: 1 });
+      await containerControls.start({ x: 0, opacity: 1 })
       await Promise.all([
         imageControls.start({ y: 0 }),
         textControls.start({ x: 0, opacity: 1 }),
-        buttonControls.start({ y: 0, opacity: 1 })
-      ]);
+        buttonControls.start({ y: 0, opacity: 1 }),
+      ])
     }
-    runSequence();
-  }, []);
+    runSequence()
+  }, [])
 
   return (
     <>
@@ -67,15 +75,15 @@ export function HeroSection() {
           </motion.p>
         </div>
 
-            <object 
-                className="hero_section__portrait"
-                data={portrait} 
-                type="image/svg+xml"
-                style={{width: 'clamp(250px, 30vw, 550px)'}}
-           ></object>
+        <object
+          className="hero-section__portrait"
+          data={portrait}
+          type="image/svg+xml"
+          style={{ width: "clamp(250px, 30vw, 550px)" }}
+        ></object>
       </motion.section>
 
       <ContactModal />
     </>
-  );
+  )
 }

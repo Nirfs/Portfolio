@@ -1,23 +1,28 @@
 @use '../styles/abstract/variable' as v;
 @use '../styles/abstract/mixins' as m;
-#competences{
-    overflow: hidden;
-}
-.skill_header{
-    padding: 0 10%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+
+#competences {
+  overflow: hidden;
 }
 
-.skill_card_container{
-    margin: 50px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-      @include m.media(v.$bp-lg) {
-        flex-direction: column;
-        align-items: center;
-    }
+.skill_header {
+  padding: 0 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.skill_card_container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 50px;
+
+  @include m.media(v.$bp-lg) {
+    margin: 50px 10px;
+    flex-direction: column;
+    align-items: center;
+  }
 }

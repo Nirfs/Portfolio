@@ -1,5 +1,18 @@
-import { motion } from 'motion/react';
-import '../../styles/titleAnimation.scss';
+// Librairies
+import { motion } from 'motion/react'
+
+// Styles
+import '../../styles/titleAnimation.scss'
+
+/**
+ * Composant affichant un titre animé avec un texte descriptif
+ *
+ * @param {Object} props
+ * @param {string} props.title - Le titre à afficher
+ * @param {string} props.text - Le texte descriptif
+ * @param {string} props.id - L'id HTML pour l'ancre de section
+ * @returns {JSX.Element}
+ */
 
 export function TitleAnimation({ title, text, id }) {
   return (
@@ -18,5 +31,5 @@ export function TitleAnimation({ title, text, id }) {
       </motion.h2>
       <p className="title-section__text">{text}</p>
     </section>
-  );
+  )
 }

@@ -3,31 +3,41 @@
 
 .doodle_bg {
   position: absolute;
-  height: 90%;
   top: 60px;
   right: 0;
+  height: 90%;
   z-index: -1;
-   mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  transition: all 0.3s ease;
+
   @include m.media(v.$bp-lg) {
-      height: 100%;
     top: 140px;
+    height: 100%;
   }
 }
 
-.home_section{
+.home_section {
   margin-top: 160px;
-  &.media{
-    padding: 90px;
+  position: relative;
+
+  &.media {
     width: 90%;
     max-width: 900px;
+    margin: 130px auto 160px auto;
+    padding: 90px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 130px auto 160px auto;
     background-color: v.$color-light;
-    border: 2px solid black;
-    color: #000;
-    box-shadow: 8px 8px 0 #000;
+    border: 2px solid v.$color-dark;
+    box-shadow: 8px 8px 0 v.$color-dark;
+    color: v.$color-dark;
+    border-radius: 5px;
+
+    @include m.media(v.$bp-lg) {
+      padding: 60px 20px;
+      margin: 100px auto 120px auto;
+    }
   }
 }

@@ -10,8 +10,26 @@
     padding: 50px;
     border: 1px solid v.$color-dark;
     width: 50%;
-    margin: 50px auto;   
-    h1{
-        font-size: 20rem;
+    margin: 50px auto;
+
+        h1{
+            font-size: 20rem;
+        }
+        
+        a {
+        font-size: v.$link-size;
+        font-weight: bold;
+        color: v.$color-dark;
+        text-decoration: none;
+        border: 2px solid v.$color-dark;
+        padding: 10px 20px;
+        transition: all 0.3s ease;
+        box-shadow: 4px 4px 0 v.$color-dark;
+        background-color: v.$color-light;
+
+        &:hover {
+        transform: translate(-4px, -4px);
+        box-shadow: 8px 8px 0 v.$color-dark;
+        }
     }
 }

@@ -1,85 +1,105 @@
 // Librairies
-import { useState } from 'react'
-import Modal from 'react-modal'
+import { useState } from "react"
+import Modal from "react-modal"
+
 // Composants
-import { useAuth } from '../../context/AuthProvider'
-import { loginUser } from '../../api/fetch';
+import { useAuth } from "../../context/AuthProvider"
+import { loginUser } from "../../api/fetch"
+
 // Styles
-import '../../styles/connectModal.scss'
+import "../../styles/connectModal.scss"
 
-export function ConnectModal(){
-    const [isOpen, setIsOpen] = useState(false)
-    const {token,login, logout} = useAuth()
+/**
+ * Modal de connexion admin affichant un formulaire de login.
+ * Affiche un bouton de connexion si l'utilisateur n'est pas connecté,
+ * sinon un bouton de déconnexion.
+ *
+ * @component
+ * @returns {JSX.Element} Composant ConnectModal.
+ */
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+export function ConnectModal() {
+  const [isOpen, setIsOpen] = useState(false)
+  const { token, login, logout } = useAuth()
 
-    const handleOpen = () => {setIsOpen(true)}
-    const handleClose = () => {setIsOpen(false)}
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
-    const handleSubmit = async (e) =>  {
-        e.preventDefault()        
-        try {
-            const token = await loginUser(email, password);
-            login(token);
-            handleClose();
-        } catch (err) {
-            alert(err.message);
-        }
-    };
-    
-    return(
+  const handleOpen = () => setIsOpen(true)
+  const handleClose = () => setIsOpen(false)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      const token = await loginUser(email, password)
+      login(token)
+      handleClose()
+    } catch (err) {
+      alert(err.message)
+    }
+  }
+
+  return (
     <>
-            {!token ?
-            <button onClick={handleOpen} className="open-modal-btn">
-                Connexion admin
-            </button> :
-            <button onClick={logout} className="open-modal-btn">
-                Deconnexion
-            </button>
-            }
-        <Modal
-            isOpen={isOpen}
-            onRequestClose={handleClose}
-            contentLabel='modal de connexion'
-            overlayClassName='modal_overlay'
-            className='connect_modal_content'
-            shouldCloseOnOverlayClick
-            closeTimeoutMS={160}
+      {!token ? (
+        <button onClick={handleOpen} className="open-modal-btn">
+          Connexion admin
+        </button>
+      ) : (
+        <button onClick={logout} className="open-modal-btn">
+          Deconnexion
+        </button>
+      )}
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={handleClose}
+        contentLabel="modal de connexion"
+        overlayClassName="modal_overlay"
+        className="connect_modal_content"
+        shouldCloseOnOverlayClick
+        closeTimeoutMS={160}
+      >
+        <form
+          className="form_connect"
+          method="POST"
+          onSubmit={handleSubmit}
         >
-              <form className='form_connect' method="POST" onSubmit={handleSubmit}>
-                <h2>Connexion</h2>
-                <div className='input_grp'>
-                    <label htmlFor="email">Adresse e-mail</label>
-                    <input 
-                        className="input button--submit" 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        placeholder="exemple@mail.com" required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        />
-                </div>
-                <div className='input_grp'>
-                    <label htmlFor="password">Mot de passe</label>
-                    <input 
-                    className='input'
-                    type="password" 
-                    id="password" 
-                    name="password" 
-                    placeholder="••••••••" required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
+          <h2>Connexion</h2>
 
-                <input className="input" type="submit" value="Se connecter"/>
+          <div className="input_grp">
+            <label htmlFor="email">Adresse e-mail</label>
+            <input
+              className="input button--submit"
+              type="email"
+              id="email"
+              name="email"
+              placeholder="exemple@mail.com"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-                <div className="form-footer">
-                </div>
-            </form>
-        </Modal>
+          <div className="input_grp">
+            <label htmlFor="password">Mot de passe</label>
+            <input
+              className="input"
+              type="password"
+              id="password"
+              name="password"
+              placeholder="••••••••"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+
+          <input className="input" type="submit" value="Se connecter" />
+
+          <div className="form-footer"></div>
+        </form>
+      </Modal>
     </>
-    )
+  )
 }

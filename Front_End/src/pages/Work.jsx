@@ -1,19 +1,19 @@
 // Librairies
-import { useLoaderData, useParams } from "react-router-dom";
-import { easeInOut, easeOut, motion } from "framer-motion";
+import { useLoaderData, useParams } from "react-router-dom"
+import { easeInOut, easeOut, motion } from "framer-motion"
+
 // Composants
-import { NotFound } from "./NotFound";
-import { useScollTo } from "../hook/useScollTo";
+import { NotFound } from "./NotFound"
+import { useScollTo } from "../hook/useScollTo"
 
 // Styles
-import "../styles/work.scss";
+import "../styles/work.scss"
 
 export function Work() {
-
-  const scrollTo = useScollTo();
-  const workList = useLoaderData();
-  const { id } = useParams();
-  const work = workList.find((item) => item._id === id);
+  const scrollTo = useScollTo()
+  const workList = useLoaderData()
+  const { id } = useParams()
+  const work = workList.find((item) => item._id === id)
 
   const stackIcons = {
     html: "https://cdn.worldvectorlogo.com/logos/html-1.svg",
@@ -26,22 +26,17 @@ export function Work() {
     photoshop: "https://cdn.worldvectorlogo.com/logos/photoshop-cc-4.svg",
     illustrator: "https://cdn.worldvectorlogo.com/logos/adobe-illustrator-cs6.svg",
     afterEffect: "https://cdn.worldvectorlogo.com/logos/after-effects-2019.svg",
-  };
+  }
 
   if (!work) return <NotFound />
 
   return (
-    
     <section className="work-section" aria-labelledby="work-title">
-      {/* Image principale */}
+
       <motion.div
         className="work-cover"
         initial={{ y: -200, opacity: 0 }}
-        animate={{
-          y: 0,
-          opacity: 1,
-          transition: { duration: 0.5, ease: easeInOut },
-        }}
+        animate={{ y: 0, opacity: 1, transition: { duration: 0.5, ease: easeInOut } }}
       >
         <img
           fetchPriority="high"
@@ -51,34 +46,23 @@ export function Work() {
         />
       </motion.div>
 
-      {/* Texte principal */}
       <motion.article
         className="work-content"
         initial={{ y: 200, opacity: 0 }}
-        animate={{
-          y: 0,
-          opacity: 1,
-          transition: { duration: 0.5, ease: easeOut },
-        }}
+        animate={{ y: 0, opacity: 1, transition: { duration: 0.5, ease: easeOut } }}
       >
         <h1 id="work-title">{work.title}</h1>
         <p>{work.description}</p>
 
-        {/* Stack */}
         <div className="work-stack">
           {Array.isArray(work.stackUse) &&
             work.stackUse.map((stack) => (
               <div key={stack} className="work-stack__item" title={stack}>
-                <img
-                  src={stackIcons[stack] ?? ""}
-                  alt={stack}
-                  loading="lazy"
-                />
+                <img src={stackIcons[stack] ?? ""} alt={stack} loading="lazy" />
               </div>
             ))}
         </div>
 
-        {/* Liens */}
         <div className="work-links">
           {work.ghLink && (
             <a
@@ -103,7 +87,6 @@ export function Work() {
         </div>
       </motion.article>
 
-      {/* Galerie secondaire */}
       {Array.isArray(work.secondaryImageUrl) && work.secondaryImageUrl.length > 0 && (
         <div className="work-gallery">
           {work.secondaryImageUrl.map((img, index) => (
@@ -118,19 +101,18 @@ export function Work() {
         </div>
       )}
 
-      {/* Vidéo */}
       {work.videoUrl && (
         <div className="work-video">
           <iframe
             src={work.videoUrl}
             title={`${work.title} — vidéo`}
             frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="accelerometer autoplay clipboard-write encrypted-media gyroscope picture-in-picture web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
           />
         </div>
       )}
     </section>
-  );
+  )
 }

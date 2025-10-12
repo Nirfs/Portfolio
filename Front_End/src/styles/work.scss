@@ -60,7 +60,9 @@
     max-width: 680px;
     width: 100%;
     gap: 24px;
-
+      @include m.media(v.$bp-md) {
+            max-width: 80%;
+      }
     h1 {
       margin: 0;
       font-size: 2rem;

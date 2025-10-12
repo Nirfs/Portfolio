@@ -1,33 +1,45 @@
 @use '../styles/abstract/variable' as v;
 @use '../styles/abstract/mixins' as m;
-.form_connect{
+
+.form_connect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-family: v.$font-primary;
+    font-size: v.$h2-size;
+    line-height: v.$h2-line;
+  }
+
+  .input_grp {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
-
-    h2{
-        text-align: center;
-        margin-bottom: 1rem;
-    }
-
-    .input_grp{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-
-    }
+    gap: 10px;
+    width: 100%;
+    max-width: 300px;
+  }
 }
 
 .connect_modal_content {
-  background: v.$color-purple;
-  border: 2px v.$color-dark solid;
+  background-color: v.$color-purple;
+  border: 2px solid v.$color-dark;
   color: v.$color-dark;
   width: min(90vw, 520px);
   border-radius: 5px;
   padding: 20px;
+
   outline: none;
   transform: translateY(0);
   transition: opacity 150ms ease, transform 150ms ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  max-height: 600px;
 }

@@ -1,9 +1,33 @@
-import '../../styles/addProjectModal.scss'
+// Styles
+import "../../styles/addProjectModal.scss"
+
+/**
+ * Composant pour sélectionner les stacks/technologies utilisées dans un projet.
+ *
+ * @component
+ * @param {Object} props
+ * @param {string[]} props.selectedStacks - Tableau des stacks actuellement sélectionnées.
+ * @param {Function} props.setSelectedStacks - Setter pour mettre à jour les stacks sélectionnées.
+ * @returns {JSX.Element} Composant StackSelector.
+ */
+
 export function StackSelector({ selectedStacks, setSelectedStacks }) {
-  const stacks = ["html", "css", "javaScript", "react", "node", "mongoDb", "scss", "photoshop", "illustrator", "afterEffect"]
+  const stacks = [
+    "html",
+    "css",
+    "javaScript",
+    "react",
+    "node",
+    "mongoDb",
+    "scss",
+    "photoshop",
+    "illustrator",
+    "afterEffect",
+  ]
+
   return (
-    <fieldset>
-      <legend>Choisir les stack du projet</legend>
+    <fieldset className="stack_selector">
+      <legend>Choisir les stacks du projet</legend>
       {stacks.map((stack) => (
         <div key={stack}>
           <input
