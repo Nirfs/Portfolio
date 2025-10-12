@@ -1,21 +1,23 @@
 //Librairies
 import {createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 //Composants
 import { Home } from '../pages/Home';
-import { HomeWrapper } from '../pages/HomeWrapper';
 import { NotFound } from '../pages/NotFound';
 import { Work } from '../pages/Work';
 import { Layout }  from '../pages/Layout';
 import { getWork } from '../api/fetch';
+import { Loader } from '../components/Loader';
 
 const router = createBrowserRouter([
     {    
         path: '/',
         element: <Layout />,
+        HydrateFallback: () => <Loader/>,
         children:[
             {
                 index:true,
-                element:<HomeWrapper/>,
+                element:<Home/>,
                 loader: getWork,
                 HydrateFallback: () => null
             },
