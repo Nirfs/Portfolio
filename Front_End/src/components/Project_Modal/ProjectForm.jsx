@@ -7,7 +7,7 @@ import { createWork } from '../../api/fetch';
 //Styles
 import '../../styles/projectForm.scss'
 
-export function ProjectForm({ onClose }) {
+export function ProjectForm({ onClose, onWorkCreated  }) {
   const MAX_SIZE = 5 * 1024 * 1024
   const MAX_FILES = 6
 
@@ -63,6 +63,11 @@ export function ProjectForm({ onClose }) {
     secondaryFiles.forEach((file) => formData.append('secondaryImages', file));
 
     await createWork(formData);
+
+
+      if (onWorkCreated) {
+        onWorkCreated();
+      }
 
     clearPreviewsAndFiles();
     setTitle('');

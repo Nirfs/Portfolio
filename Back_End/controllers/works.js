@@ -11,12 +11,11 @@ exports.getAllWorks = (req, res) => {
 exports.getWork = (req, res) => {
     Work.findOne({ _id: req.params.id })
     .then(work => {
-      if (!work) return res.status(404).json({ message: 'Livre non trouvé !' });
+      if (!work) return res.status(404).json({ message: 'Projet non trouvé !' });
       res.status(200).json(work);
     })
     .catch(err => res.status(400).json({ err }));
 };
-
 
 exports.createWork = (req, res) => {
   
@@ -42,47 +41,55 @@ exports.createWork = (req, res) => {
     });
 
     work.save()
-        .then(() => res.status(201).json({ message: 'travail enregistré !' }))
+        .then(() => res.status(201).json({ message: 'Projet enregistré !' }))
         .catch(error => res.status(400).json({ error }));
 };
 
 
-exports.deleteBook = (req, res) => {
+exports.deleteWork = (req, res) => {
   Work.findOne({ _id: req.params.id })
     .then(work => {
-      if (!work) return res.status(404).json({ message: 'travail non trouvé' });
-
-      if (work.userId !== req.auth.userId) {
+      if (!work) return res.status(404).json({ message: 'Projet non trouvé' });
+      if (work.userId.toString() !== req.auth.userId) {
         return res.status(401).json({ message: 'Non autorisé' });
       }
 
-      const allUrls = [work.imageUrl, ...(work.secondaryImagesUrl || [])];
-      const allFiles = allUrls.map(url => {
-        try {
-          const { pathname } = new URL(url);
-          return path.basename(pathname);
-        } catch (err) {
-          return url.split('/').pop();
-        }
-      });
+      // on regroupe toutes les images à supprimer
+      const images = [];
 
-      const deleteNext = (index = 0) => {
-        if (index >= allFiles.length) {
-          return work.deleteOne({ _id: req.params.id })
-            .then(() => res.status(200).json({ message: 'travail et images supprimés !' }))
-            .catch(error => res.status(400).json({ error }));
-        }
+      // image principale
+      if (work.imageUrl) images.push(work.imageUrl);
 
-        const filePath = path.join(__dirname, '..', 'images', allFiles[index]);
-        fs.unlink(filePath, err => {
-          if (err && err.code !== 'ENOENT') {
-            console.error('Erreur suppression image:', err);
-          }
-          deleteNext(index + 1);
-        });
+      // images secondaires
+      if (Array.isArray(work.secondaryImageUrl)) {
+        images.push(...work.secondaryImageUrl);
+      }
+
+      // Extraction du chemin après /images/
+      const getRelativePath = (url) => {
+        if (!url) return null;
+        const parts = url.split('/images/');
+        return parts[1] ? parts[1] : null;
       };
 
-      deleteNext();
+      // Suppréssions de toutes les images trouvées
+      images.forEach(imgUrl => {
+        const relativePath = getRelativePath(imgUrl);
+        if (!relativePath) return;
+
+        const filePath = `images/${relativePath}`;
+        fs.unlink(filePath, (err) => {
+          if (err) {
+            console.warn(`Erreur suppression ${filePath}: ${err.message}`);
+          } else {
+            console.log(`Supprimé: ${filePath}`);
+          }
+        });
+      });
+
+      Work.deleteOne({ _id: req.params.id })
+        .then(() => res.status(200).json({ message: 'Projet et images supprimés !' }))
+        .catch(error => res.status(400).json({ error }));
     })
     .catch(error => res.status(500).json({ error }));
-};
+}

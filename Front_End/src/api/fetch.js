@@ -1,9 +1,11 @@
 const apiUrl = import.meta.env.VITE_API_URL;
 
+
 export async function getWork() {
-    const rep = await fetch(`${apiUrl}/api/work`)
-    if(!rep) throw new Error('Erreur lors du chargement des travaux')
-        return rep.json();
+    const res = await fetch(`${apiUrl}/api/work`)
+
+    if(!res) throw new Error('Erreur lors du chargement des travaux')
+    return res.json();
 }
 
 export async function createWork(formData) {
@@ -41,11 +43,31 @@ export async function loginUser(email, password) {
     }
 
     const data = await res.json();
-
     if (!data.token) throw new Error("Réponse serveur invalide");
-
     return data.token;
+    
   } catch (err) {
+    console.error(err);
+    throw err;
+  }
+}
+
+export async function deleteWork(id, token) {
+  try{
+    const response = await fetch(`${apiUrl}/api/work/${id}`, {
+      method: "DELETE",
+      headers: { 
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erreur serveur : ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (err){
     console.error(err);
     throw err;
   }

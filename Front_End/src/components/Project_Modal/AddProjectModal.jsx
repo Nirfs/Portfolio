@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthProvider'
 import { ProjectForm } from './ProjectForm'
 import '../../styles/addProjectModal.scss'
 
-export function AddProjectModal() {
+export function AddProjectModal({onWorkCreated }) {
   const [isOpen, setIsOpen] = useState(false)
   const { token } = useAuth()
   
@@ -26,7 +26,10 @@ export function AddProjectModal() {
         closeTimeoutMS={160}
       >
         <h3>Ajouter un projet</h3>
-        <ProjectForm onClose={() => setIsOpen(false)} />
+        <ProjectForm 
+        onClose={() => setIsOpen(false)}
+        onWorkCreated={onWorkCreated}
+        />
       </Modal>
     </>
   )
