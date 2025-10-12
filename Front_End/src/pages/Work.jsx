@@ -1,7 +1,6 @@
 // Librairies
 import { useLoaderData, useParams } from "react-router-dom"
 import { easeInOut, easeOut, motion } from "framer-motion"
-
 // Composants
 import { NotFound } from "./NotFound"
 import { useScollTo } from "../hook/useScollTo"
@@ -31,8 +30,8 @@ export function Work() {
   if (!work) return <NotFound />
 
   return (
+    <>
     <section className="work-section" aria-labelledby="work-title">
-
       <motion.div
         className="work-cover"
         initial={{ y: -200, opacity: 0 }}
@@ -106,7 +105,6 @@ export function Work() {
           <iframe
             src={work.videoUrl}
             title={`${work.title} — vidéo`}
-            frameBorder="0"
             allow="accelerometer autoplay clipboard-write encrypted-media gyroscope picture-in-picture web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
@@ -114,5 +112,6 @@ export function Work() {
         </div>
       )}
     </section>
+  </>
   )
 }

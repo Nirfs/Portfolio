@@ -19,7 +19,7 @@ import "../../styles/buttonShake.scss"
 export function ButtonShake({ text, onClick, ariaLabel }) {
   return (
     <motion.div
-      animate={{
+        animate={{
           rotate: [0, -2, 2, -2, 0],
         }}
         transition={{
@@ -28,7 +28,8 @@ export function ButtonShake({ text, onClick, ariaLabel }) {
           repeat: Infinity,
           repeatDelay: 3,
         }}
-      whileTap={{ scale: 0.98 }}>
+    >
+
         <button
           type="button"
           onClick={onClick}

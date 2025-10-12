@@ -9,7 +9,7 @@
   position: relative;
   top: -40px;
 
-  width: 90%;
+  width: 20%;
   max-width: 270px;
   height: 60px;
   padding: 12px 20px;
@@ -21,12 +21,6 @@
   color: v.$color-dark;
   background-color: v.$color-light;
 
-  transition: 
-    transform 0.25s ease, 
-    box-shadow 0.25s ease, 
-    color 0.15s ease,
-    background-color 0.15s ease;
-
   &:hover {
     transform: translate(-4px, -4px);
     box-shadow: 12px 12px 0 v.$color-dark;
@@ -36,11 +30,6 @@
     background-color: v.$color-dark;
     color: v.$color-light;
     border-color: v.$color-light;
-  }
-
-  &:focus-visible {
-    outline: 3px solid v.$color-dark;
-    outline-offset: 5px;
   }
 
   // Responsive

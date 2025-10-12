@@ -34,12 +34,12 @@ const timelineData = [
  */
 function TimelineStep({ year, title, icon, isLast }) {
   return (
-    <div className="timeline-step">
+    <li className="timeline-step">
       <img className="step-icon" src={icon} alt={`picto pour ${title}`} />
       <div className="step-year">{year}</div>
       <div className="step-title">{title}</div>
       {!isLast && <div className="step-connector"></div>}
-    </div>
+    </li>
   )
 }
 
@@ -52,7 +52,7 @@ function TimelineStep({ year, title, icon, isLast }) {
 export default function Timeline() {
   return (
     <div className="timeline-wrapper">
-      <div className="timeline-horizontal">
+      <ul className="timeline-horizontal">
         {timelineData.map((event, index) => (
           <TimelineStep
             key={event.id}
@@ -62,7 +62,7 @@ export default function Timeline() {
             isLast={index === timelineData.length - 1}
           />
         ))}
-      </div>
+      </ul>
     </div>
   )
 }

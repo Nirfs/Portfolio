@@ -16,7 +16,7 @@ import '../../styles/titleAnimation.scss'
 
 export function TitleAnimation({ title, text, id }) {
   return (
-    <section className="title-section" id={id}>
+    <div className="title-section" id={id}>
       <motion.h2
         className="title-section__title"
         initial={{ opacity: 0, scale: 0, y: 60, rotate: -3 }}
@@ -30,6 +30,6 @@ export function TitleAnimation({ title, text, id }) {
         {title}
       </motion.h2>
       <p className="title-section__text">{text}</p>
-    </section>
+    </div>
   )
 }

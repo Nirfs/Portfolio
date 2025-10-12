@@ -40,7 +40,7 @@ export function SkillsSection() {
       ></motion.div>
 
       <div className="skill_card_container">
-        <motion.div style={{ y: y1, x: x1 }}>
+        <motion.article style={{ y: y1, x: x1 }}>
           <SkillCard
             className="front_end"
             title="FRONT END"
@@ -54,9 +54,9 @@ export function SkillsSection() {
             image_src={front_end}
             alt="picto front end"
           />
-        </motion.div>
+        </motion.article>
 
-        <motion.div style={{ y: y2 }}>
+        <motion.article style={{ y: y2 }}>
           <SkillCard
             className="back_end"
             title="BACK END"
@@ -68,9 +68,9 @@ export function SkillsSection() {
             image_src={back_end}
             alt="picto back end"
           />
-        </motion.div>
+        </motion.article>
 
-        <motion.div style={{ y: y3, x: x3 }}>
+        <motion.article style={{ y: y3, x: x3 }}>
           <SkillCard
             className="design"
             title="DESIGN GRAPHIQUE"
@@ -83,7 +83,7 @@ export function SkillsSection() {
             image_src={design}
             alt="picto design"
           />
-        </motion.div>
+        </motion.article>
       </div>
     </>
   )

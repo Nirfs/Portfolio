@@ -32,7 +32,7 @@ export function CopyButton({ text }) {
         {text}
       </p>
 
-      <button type="button" onClick={handleCopy}>
+      <button className='input' type="button" onClick={handleCopy}>
         {isCopied ? "Copié !" : "Copier"}
       </button>
     </div>

@@ -9,7 +9,6 @@
   z-index: -1;
   mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-  transition: all 0.3s ease;
 
   @include m.media(v.$bp-lg) {
     top: 140px;

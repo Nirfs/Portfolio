@@ -13,6 +13,8 @@ export function Loader() {
   return (
     <div className="loader_container">
       <object
+        role='img'
+        aria-label='tête-personnage animé'
         data={bonhomme}
         type="image/svg+xml"
         style={{ width: '300px', height: 'auto' }}

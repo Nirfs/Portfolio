@@ -39,7 +39,7 @@ export function HeroSection() {
 
   return (
     <>
-      <motion.section
+      <motion.div
         className="hero-section"
         initial={{ x: -250, opacity: 0 }}
         animate={containerControls}
@@ -76,12 +76,14 @@ export function HeroSection() {
         </div>
 
         <object
+          role="img"
+          aria-label='auto-portrait animé'
           className="hero-section__portrait"
           data={portrait}
           type="image/svg+xml"
           style={{ width: "clamp(250px, 30vw, 550px)" }}
         ></object>
-      </motion.section>
+      </motion.div>
 
       <ContactModal />
     </>

@@ -54,7 +54,7 @@ export function ContactModal() {
         <h3>Contact</h3>
         <div className="contact_text_container">
           <p>Écris-moi un message — je réponds vite.</p>
-          <CopyButton text="Pieplu.kevin@gmail.com" />
+          <CopyButton clastext="Pieplu.kevin@gmail.com" />
         </div>
       </Modal>
     </>
