@@ -7,7 +7,7 @@ const storage = multer.memoryStorage();
 
 const upload = multer({
   storage,
-  limits: { fileSize: 5 * 1024 * 1024 } // max 5 Mo
+  limits: { fileSize: 5 * 1024 * 1024 }
 }).fields([
   { name: 'image', maxCount: 1 },
   { name: 'secondaryImages', maxCount: 10 }
@@ -45,7 +45,7 @@ const imageOptimizer = async (req, res, next) => {
     // Images secondaires
     if (req.files.secondaryImages && req.files.secondaryImages.length > 0) {
       for (const file of req.files.secondaryImages) {
-        const filename = await processImage(file, secondaryDir, 450, 85);
+        const filename = await processImage(file, secondaryDir, 450, 95);
         file.filename = `secondary/${filename}`;
       }
     }
