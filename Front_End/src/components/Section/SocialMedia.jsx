@@ -1,3 +1,6 @@
+///Librairies
+import { easeIn, motion, useAnimation } from "motion/react";
+
 // Assets
 import mail from '../../assets/plane.svg';
 import linkedin from '../../assets/linkedin.svg';
@@ -14,17 +17,30 @@ export function SocialMedia() {
   ];
 
   return (
-    <div className="social-media">
-      {socialLinks.map(({ src, alt, link }, idx) => (
-        <a
-          key={idx}
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="social-media__icon"
-        >
-          <img src={src} alt={alt} loading="lazy" />
-        </a>
+    <div 
+      className="social-media"
+    >
+      {socialLinks.map(({ src, alt, link }, i) => (
+        <motion.div
+            key={i}
+            initial={{ scale: 1}}
+            whileHover={{ scale: 1.1}}
+            transition={{
+              duration: 0.5,
+              ease:easeIn,
+              scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
+            }}
+            >
+          <a
+            
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-media__icon"
+          >
+            <img src={src} alt={alt} loading="lazy" />
+          </a>
+        </motion.div>
       ))}
     </div>
   );

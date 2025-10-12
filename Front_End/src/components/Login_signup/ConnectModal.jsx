@@ -18,10 +18,8 @@ export function ConnectModal(){
     const handleClose = () => {setIsOpen(false)}
 
     const handleSubmit = async (e) =>  {
-
-        e.preventDefault()
-        
-         try {
+        e.preventDefault()        
+        try {
             const token = await loginUser(email, password);
             login(token);
             handleClose();

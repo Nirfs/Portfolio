@@ -6,6 +6,7 @@ import { Footer } from '../components/Layout/Footer';
 //styles
 import '../styles/abstract/global.scss'
 
+
 export function Layout(){ 
     return(
         <>

@@ -5,8 +5,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
     build: {
-    minify: 'esbuild',
-    sourcemap: false,
+    minify: 'esbuild', // Plus rapide que terser, inclus par défaut dans Vite
+    sourcemap: false, // Désactive les sourcemaps en production pour réduire la taille
     rollupOptions: {
       output: {
         manualChunks: {

@@ -1,14 +1,26 @@
-// Librairies
+//Librairie
 import { NavLink, useLocation } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
-// Composants
+import { motion } from 'motion/react';
+//Composants
 import { ConnectModal } from "../Login_signup/ConnectModal";
 import { useScreenWidth } from '../../context/ScreenWidthProvider';
-// Assets
-import logoStatic from '../../assets/logo.webp';
-
-// Styles
+//Assets
+import logoStatic from '../../assets/logo.svg';
+//Styles
 import '../../styles/header.scss';
+
+const MotionWrapper = ({ children }) => (
+  <motion.div
+    whileHover={{ scale: 1.2}}
+    transition={{
+      duration: 0.4,
+      scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
+    }}
+  >
+    {children}
+  </motion.div>
+);
 
 export function Header() {
   const screenWidth = useScreenWidth();
@@ -17,20 +29,29 @@ export function Header() {
 
   return (
     <header className="site-header">
-      <img 
-        className="site-header__logo" 
-        src={logoStatic} 
-        alt="Logo animée" 
-      />
+      <MotionWrapper>
+        <img className="site-header__logo" src={logoStatic} alt="Logo animée" />
+      </MotionWrapper>
+
       <nav className="site-header__nav">
-        <NavLink to="/" className="site-header__link">Accueil</NavLink>
+        <MotionWrapper>
+          <NavLink to="/" className="site-header__link">Accueil</NavLink>
+        </MotionWrapper>
+
         {!isMobile && location.pathname === "/" && (
           <>
-            <HashLink smooth to="#travaux" className="site-header__link">Travaux</HashLink>
-            <HashLink smooth to="#competences" className="site-header__link">Compétences</HashLink>
+            <MotionWrapper>
+              <HashLink smooth to="#travaux" className="site-header__link">Travaux</HashLink>
+            </MotionWrapper>
+            <MotionWrapper>
+              <HashLink smooth to="#competences" className="site-header__link">Compétences</HashLink>
+            </MotionWrapper>
           </>
         )}
-        <ConnectModal />
+
+        <MotionWrapper>
+          <ConnectModal />
+        </MotionWrapper>
       </nav>
     </header>
   );

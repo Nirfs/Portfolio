@@ -4,12 +4,14 @@ import { easeInOut, easeOut, motion } from "framer-motion";
 // Composants
 import { NotFound } from "./NotFound";
 import { useScollTo } from "../hook/useScollTo";
+
 // Styles
 import "../styles/work.scss";
 
 export function Work() {
+
   const scrollTo = useScollTo();
-  const workList = useLoaderData() ?? [];
+  const workList = useLoaderData();
   const { id } = useParams();
   const work = workList.find((item) => item._id === id);
 
@@ -26,9 +28,10 @@ export function Work() {
     afterEffect: "https://cdn.worldvectorlogo.com/logos/after-effects-2019.svg",
   };
 
-  if (!work) return <NotFound />;
+  if (!work) return <NotFound />
 
   return (
+    
     <section className="work-section" aria-labelledby="work-title">
       {/* Image principale */}
       <motion.div

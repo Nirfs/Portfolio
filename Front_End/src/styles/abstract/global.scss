@@ -95,9 +95,6 @@ a, button {
   text-decoration: none;
   background-color: transparent;
   border: none;
-  &:hover {
-    text-decoration: underline;
-  }
 }
 .modal_overlay {
   position: fixed;

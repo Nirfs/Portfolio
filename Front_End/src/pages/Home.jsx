@@ -16,8 +16,7 @@ import '../styles/home.scss'
 
 
 export function Home(){
-    const [loading, setLoading] = useState(true);
-    
+
     const scrollTo = useScollTo()
     const worksList = useLoaderData()
     
@@ -31,12 +30,11 @@ export function Home(){
                 src={bg}
                 alt="Illustration doodle pop culture"
             />
-
-            <section aria-labelledby="en-tête" className='home_section'>
+            <section aria-label="hero" className='home_section'>
                 <HeroSection />
             </section>
 
-            <section aria-labelledby="competences" className='home_section'>
+            <section aria-label="competences" className='home_section'>
                 <TitleAnimation
                     title="COMPÉTENCES"
                     text="Petit tour d’horizon de mes compétences, entre design et développement."
@@ -45,7 +43,7 @@ export function Home(){
                 <SkillsSection />
             </section>
 
-            <section aria-labelledby="travaux" className='home_section'> 
+            <section aria-label="travaux" className='home_section'> 
                 <TitleAnimation
                     title="PROJETS MIS EN AVANT"
                     text="Une sélection de projets marquants : entre graphisme, développement et créations personnelles."
@@ -56,7 +54,7 @@ export function Home(){
 
 
 
-            <section aria-labelledby="parcours" className='home_section'>
+            <section aria-label="parcours" className='home_section'>
                 <TitleAnimation
                     title="PARCOURS ÉTUDIANT ET PROFESSIONNEL"
                     text="Un aperçu des expériences et formations qui ont jalonné mon parcours."
@@ -66,7 +64,7 @@ export function Home(){
             </section>
 
 
-            <section aria-labelledby="reseaux" className='home_section media'>
+            <section aria-label="reseaux" className='home_section media'>
                 
             <TitleAnimation
                 title="RÉSEAUX SOCIAUX"

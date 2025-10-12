@@ -10,7 +10,6 @@ router.get('/', workCtrl.getAllWorks)
 router.get('/:id', workCtrl.getWork)
 
 router.post('/', auth, upload, imageOptimizer, workCtrl.createWork);
-
-router.delete('/:id',auth, workCtrl.deleteBook);
+router.delete("/:id",auth, workCtrl.deleteWork);
 
 module.exports = router;

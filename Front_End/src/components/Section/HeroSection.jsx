@@ -3,7 +3,7 @@ import { motion, useAnimation } from "motion/react";
 import { useEffect } from "react";
 
 // Assets
-import portrait from '../../assets/character.svg';
+import portrait from '../../assets/characterAnime.svg';
 
 // Composants
 import { ContactModal } from "./ContactModal";
@@ -67,14 +67,12 @@ export function HeroSection() {
           </motion.p>
         </div>
 
-        <motion.img
-          className="hero-section__portrait"
-          src={portrait}
-          alt='autoportrait dessiné'
-          initial={{ y: 600 }}
-          animate={imageControls}
-          transition={{ duration: 0.4, ease: "easeIn" }}
-        />
+            <object 
+                className="hero_section__portrait"
+                data={portrait} 
+                type="image/svg+xml"
+                style={{width: 'clamp(250px, 30vw, 550px)'}}
+           ></object>
       </motion.section>
 
       <ContactModal />

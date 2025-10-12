@@ -6,7 +6,6 @@ exports.signUp = (req, res) => {
 
     const {email, password} = req.body;
 
-    //Verifier si le corps de la requete existe
     if(!email) {
         return res.status(400).json({message: 'Email obligatoire'})
     }
@@ -14,8 +13,6 @@ exports.signUp = (req, res) => {
         return res.status(400).json({message: 'Mot de passe obligatoire'})
     }
 
-
-    //Hash du mdp
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const user = new User ({

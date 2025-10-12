@@ -18,4 +18,5 @@ app.use('/images', express.static('images'))
 
 app.use('/api/auth', authRoutes)
 app.use('/api/work', worksRoutes)
+
 module.exports = app

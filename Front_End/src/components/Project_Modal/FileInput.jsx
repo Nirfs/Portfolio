@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import '../../styles/fileInput.scss'
 
-export function FileInput({ label, file, setFile, preview, setPreview, files, setFiles, multiple, maxSize }) {
+export function FileInput({ label, setFile, preview, setPreview, files, setFiles, multiple, maxSize }) {
   const handleChange = (e) => {
     if (multiple) {
       const selected = Array.from(e.target.files || []).filter((f) => f.size <= maxSize)

@@ -1,12 +1,17 @@
 @use '../styles/abstract/variable' as v;
 @use '../styles/abstract/mixins' as m;
-
+  .project-card-wrapper{
+    position: relative;
+  }
+  .delete_button{
+    position: absolute;
+    z-index: 1;
+  }
 .project-card {
   display: block;
   width: 100%;
   max-width: 100%;
   text-decoration: none;
-
   &__content {
     position: relative;
     aspect-ratio: 1;
