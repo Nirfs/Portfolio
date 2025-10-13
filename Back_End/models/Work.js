@@ -11,6 +11,8 @@ const workSchema = mongoose.Schema({
     videoUrl: { type: String },
     ghLink:{ type: String },
     wsLink:{ type: String },
+    imagePublicId: { type: String, required: true}, 
+    secondaryImagePublicIds: { type: [String], default: [] },
 })
 
 module.exports = mongoose.model("Work", workSchema)
