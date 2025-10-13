@@ -1,5 +1,5 @@
 // Librairies
-import { NavLink, useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 import { HashLink } from "react-router-hash-link"
 import { motion } from "motion/react"
 
@@ -12,6 +12,7 @@ import logoStatic from "../../assets/logo.svg"
 
 // Styles
 import "../../styles/header.scss"
+import { useEffect, useState } from "react"
 
 /**
  * Wrapper Motion pour les animations hover avec scaling.
@@ -20,6 +21,7 @@ import "../../styles/header.scss"
  * @param {JSX.Element} props.children - Contenu à animer.
  * @returns {JSX.Element}
  */
+
 const MotionWrapper = ({ children }) => (
   <motion.div
     whileHover={{ scale: 1.2 }}
@@ -43,19 +45,34 @@ export function Header() {
   const screenWidth = useScreenWidth()
   const isMobile = screenWidth < 1025
   const location = useLocation()
+  const [isScroll, setIsScroll] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScroll(window.scrollY > 0)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+
+    return () => window.removeEventListener("scroll", handleScroll)
+  },[])
 
   return (
-    <header className="site-header">
+    <header className={ !isScroll ? "site-header" : "site-header scroll"}>
       <MotionWrapper>
         <img className="site-header__logo" src={logoStatic} alt="Logo animée" />
       </MotionWrapper>
 
       <nav className="site-header__nav">
         <MotionWrapper>
-          <NavLink to="/" className="site-header__link">
-            Accueil
-          </NavLink>
-        </MotionWrapper>
+           <HashLink
+              smooth
+              to={location.pathname === "/" ? "#site-header" : "/#site-header"}
+              className="site-header__link"
+            >
+              Accueil
+            </HashLink>
+       </MotionWrapper>
 
         {!isMobile && location.pathname === "/" && (
           <>

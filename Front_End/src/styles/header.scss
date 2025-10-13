@@ -2,12 +2,21 @@
 @use '../styles/abstract/mixins' as m;
 
 .site-header {
+  position: fixed;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 10%;
+  padding: 10px 10%;
+  background-color: v.$color-light;
+  width: 100%;
+  transition: background-color .6s ease;
+    &.scroll{
+    background-color: rgba(255, 255, 255, 0.8);
+    }
 
   @include m.media(v.$bp-lg) {
+    position:initial;
     flex-direction: column;
     gap: 20px;
   }
