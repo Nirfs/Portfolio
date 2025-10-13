@@ -28,7 +28,7 @@ const imageCloudUploader = async (req, res, next) => {
         // Lance l'upload sur Cloudinary
         const cloudinaryStream = cloudinary.uploader.upload_stream(
           { 
-            folder: `votre_dossier_de_projet/${folderName}`, // Ex: 'mon-portfolio/main'
+            folder: `mon-portfolio/${folderName}`,
             resource_type: 'image' 
           },
           (error, result) => {

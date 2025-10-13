@@ -54,7 +54,7 @@ export function Home() {
         <WorkSection worksList={worksList} />
       </section>
 
-      <section aria-label="parcours" className="home_section">
+      <section aria-label="parcours" id='parcours' className="home_section">
         <TitleAnimation
           title="PARCOURS ÉTUDIANT ET PROFESSIONNEL"
           text="Un aperçu des expériences et formations qui ont jalonné mon parcours."

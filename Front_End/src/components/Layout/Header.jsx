@@ -77,13 +77,18 @@ export function Header() {
         {!isMobile && location.pathname === "/" && (
           <>
             <MotionWrapper>
+              <HashLink smooth to="#competences" className="site-header__link">
+                Compétences
+              </HashLink>
+            </MotionWrapper>
+            <MotionWrapper>
               <HashLink smooth to="#travaux" className="site-header__link">
                 Travaux
               </HashLink>
             </MotionWrapper>
             <MotionWrapper>
-              <HashLink smooth to="#competences" className="site-header__link">
-                Compétences
+              <HashLink smooth to="#parcours" className="site-header__link">
+                Parcours
               </HashLink>
             </MotionWrapper>
           </>
