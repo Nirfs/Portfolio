@@ -3,7 +3,8 @@
 
 .doodle_bg {
   position: absolute;
-  top: 60px;
+  padding-top: 60px;
+  top: 0;
   right: 0;
   height: 90%;
   z-index: -1;
@@ -11,15 +12,24 @@
   -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
 
   @include m.media(v.$bp-lg) {
-    top: 140px;
+    top: 0px;
+    padding-top: 150px;
     height: 100%;
   }
 }
 
 .home_section {
-  margin-top: 160px;
+  margin-top: 250px;
   position: relative;
 
+  @include m.media(v.$bp-lg) {
+  margin-top: 150px;
+  }
+  &.skill{
+  @include m.media(v.$bp-lg) {
+    margin-top: 70px;
+  }
+  }
   &.media {
     width: 90%;
     max-width: 900px;

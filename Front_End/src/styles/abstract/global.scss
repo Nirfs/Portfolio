@@ -71,13 +71,12 @@ a, button {
   background-color: transparent;
   border: none;
   cursor: pointer;
-}
-a{
     &:focus-visible{
      outline: 2px solid black;
-     outline-offset: 3px;
+     outline-offset: 5px;
   }
 }
+
 // Modal
 .modal_overlay {
   position: fixed;
@@ -91,7 +90,6 @@ a{
 // Inputs / Buttons
 .input {
   max-width: 270px;
-  height: 60px;
   padding: 12px;
   font-size: v.$p-size;
   color: v.$color-dark;
@@ -109,6 +107,10 @@ a{
     background-color: v.$color-dark;
     color: v.$color-light;
     border-color: v.$color-light;
+  }
+  &:focus-visible{
+    outline: none;
+    box-shadow: 8px 8px 0 v.$color-dark;
   }
 }
 

@@ -23,6 +23,7 @@ export function Home() {
   return (
     <>
       <img
+        id='site-header'
         decoding="async"
         fetchPriority="high"
         loading="lazy"
@@ -35,7 +36,7 @@ export function Home() {
         <HeroSection />
       </section>
 
-      <section aria-label="competences" className="home_section">
+      <section aria-label="competences" className="home_section skill">
         <TitleAnimation
           title="COMPÉTENCES"
           text="Petit tour d’horizon de mes compétences, entre design et développement."

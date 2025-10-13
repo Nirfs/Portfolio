@@ -12,7 +12,6 @@
   width: 20%;
   max-width: 270px;
   height: 60px;
-  padding: 12px 20px;
 
   font-family: v.$font-primary;
   font-weight: 700;
@@ -36,5 +35,8 @@
   @include m.media(v.$bp-lg) {
     top: -90px;
     padding: 15px 40px;
+    width: 70%;
+    max-width: 270px;
+    height: 60px;
   }
 }

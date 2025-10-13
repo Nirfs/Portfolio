@@ -35,6 +35,9 @@
     display: block;
     z-index: 0;
     transition: all 0.3s ease;
+    @include m.media(v.$bp-lg) {
+      filter: brightness(0.7);
+    }
   }
 
   &__title {
@@ -48,10 +51,19 @@
     transform: translateY(120%);
     transition: all 0.3s ease;
     z-index: 2;
-    pointer-events: none;
+    flex-wrap: wrap;
+    @include m.media(v.$bp-lg) {
+      position: absolute;
+      transform: translateY(0%);
+      top: 30px;
+      left: 20px;
+      font-size: v.$h3-size;
+      text-shadow: 2px 2px 0 v.$color-dark;
+    }
   }
 
-  &:hover {
+  &:hover, &:focus-visible {
+    outline: none;
     .project-card__image {
       filter: brightness(0.2);
     }

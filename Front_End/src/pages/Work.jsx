@@ -65,7 +65,7 @@ export function Work() {
         <div className="work-links">
           {work.ghLink && (
             <a
-              className="btn-link"
+              className="input"
               target="_blank"
               rel="noopener noreferrer"
               href={work.ghLink}
@@ -75,7 +75,7 @@ export function Work() {
           )}
           {work.wsLink && (
             <a
-              className="btn-link"
+              className="input"
               target="_blank"
               rel="noopener noreferrer"
               href={work.wsLink}

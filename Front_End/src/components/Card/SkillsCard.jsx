@@ -21,7 +21,6 @@ export function SkillCard({ className, title, text, sources, image_src, alt }) {
       <div className="skill-card__content">
         <h3 className="skill-card__title">{title}</h3>
         <p className="skill-card__desc">{text}</p>
-
         <div className="skill-card__techs">
           {Array.isArray(sources) &&
             sources.map((item, i) => (

@@ -43,18 +43,13 @@ export function WorkSection({ worksList: initialWorks }) {
     <section className='work_section'>
       <nav className='filter'>
         {['all', 'developpement web', 'graphisme'].map((cat) => (
-          <motion.button
+          <button
             key={cat}
             className={filter === cat ? 'active input' : 'input'}
             onClick={() => setFilter(cat)}
-            whileHover={{ scale: 1.1 }}
-            transition={{
-              duration: 0.4,
-              scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
-            }}
           >
             {cat === "all" ? "Tous" : cat}
-          </motion.button>
+          </button>
         ))}
         <motion.div
           whileHover={{ scale: 1.1 }}
