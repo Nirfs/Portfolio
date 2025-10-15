@@ -52,7 +52,7 @@ const imageCloudUploader = async (req, res, next) => {
       const optimizedBuffer = await sharp(fileBuffer)
         .resize({ width })
         .toFormat('webp', { quality })
-        .toBuffer(); // N'écrit plus sur le disque, retourne un buffer
+        .toBuffer();
       
       return uploadStream(optimizedBuffer, folder);
     };
@@ -62,8 +62,8 @@ const imageCloudUploader = async (req, res, next) => {
       const { imageUrl, publicId } = await optimizeAndUpload(
         req.files.image[0].buffer, 
         'main', 
-        800, 
-        95
+        1000, 
+        100
       );
       // On attache les résultats à l'objet file pour les utiliser dans le contrôleur
       req.files.image[0].imageUrl = imageUrl; 
@@ -77,8 +77,8 @@ const imageCloudUploader = async (req, res, next) => {
         const { imageUrl, publicId } = await optimizeAndUpload(
           file.buffer, 
           'secondary', 
-          450, 
-          95
+          800, 
+          100
         );
         // On attache les résultats
         file.imageUrl = imageUrl;

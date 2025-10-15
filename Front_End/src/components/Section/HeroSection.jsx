@@ -67,11 +67,16 @@ export function HeroSection() {
             animate={textControls}
             transition={{ duration: 0.4, ease: "easeInOut" }}
           >
-            Hello ! Je m’appelle Kevin Pieplu, designer graphique et développeur web junior.
-            Passionné d’informatique depuis toujours, je suis curieux, créatif et autonome.
-            J’aime explorer de nouvelles idées, trouver des solutions élégantes à des problèmes complexes
-            et donner vie à des projets à travers le design et le code.
-            Mon objectif : allier esthétique et efficacité pour créer des expériences uniques.
+Hello ! Je m’appelle Kevin Pieplu, je suis développeur front-end avec un vrai bagage en design graphique.<br/>
+
+J’ai toujours été passionné d’informatique et de création visuelle, et aujourd’hui j’essaie de relier les deux : le design pour l’esthétique, et le code pour la logique.
+
+Ce que j’aime, c’est explorer, tester, trouver des solutions élégantes à des problèmes concrets, et surtout donner vie à des idées à travers le design et le développement.<br/>
+
+Mon objectif, c’est de créer des expériences à la fois belles et efficaces, où la technique sert vraiment l’utilisateur.<br/>
+
+Et à terme, j’aimerais continuer à monter en compétence sur le front React, puis élargir petit à petit vers le full-stack, pour comprendre toute la chaîne du produit. »
+
           </motion.p>
         </div>
 

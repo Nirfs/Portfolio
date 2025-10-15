@@ -53,7 +53,7 @@ export function ContactModal() {
         <img className="modal_image" src={contact_bg} alt="Fond contact" />
         <h3>Contact</h3>
         <div className="contact_text_container">
-          <p>Écris-moi un message — je réponds vite.</p>
+          <p>N’hésite pas à me contacter, je te répondrai rapidement.</p>
           <CopyButton clastext="Pieplu.kevin@gmail.com" />
         </div>
       </Modal>

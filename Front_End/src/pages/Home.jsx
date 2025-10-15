@@ -39,7 +39,7 @@ export function Home() {
       <section aria-label="competences" className="home_section skill">
         <TitleAnimation
           title="COMPÉTENCES"
-          text="Petit tour d’horizon de mes compétences, entre design et développement."
+          text="Un point sur les compétences qui me permettent de relier esthétique et technique."
           id="competences"
         />
         <SkillsSection />
@@ -48,7 +48,7 @@ export function Home() {
       <section aria-label="travaux" className="home_section">
         <TitleAnimation
           title="PROJETS MIS EN AVANT"
-          text="Une sélection de projets marquants : entre graphisme, développement et créations personnelles."
+          text="Quelques projets qui illustrent mon approche : créer, coder, expérimenter."
           id="travaux"
         />
         <WorkSection worksList={worksList} />
