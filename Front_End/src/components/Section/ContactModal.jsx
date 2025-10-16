@@ -27,16 +27,6 @@ export function ContactModal() {
   const handleClose = () => setIsOpen(false)
   const handleOpen = () => setIsOpen(true)
 
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText("Pieplu.kevin@gmail.com")
-      setIsCopied(true)
-      setTimeout(() => setIsCopied(false), 2000)
-    } catch (err) {
-      console.error("Erreur lors de la copie :", err)
-    }
-  }
-
   return (
     <>
       <ButtonShake onClick={handleOpen} bool={true} text="contact" />
@@ -54,7 +44,7 @@ export function ContactModal() {
         <h3>Contact</h3>
         <div className="contact_text_container">
           <p>N’hésite pas à me contacter, je te répondrai rapidement.</p>
-          <CopyButton clastext="Pieplu.kevin@gmail.com" />
+          <CopyButton text="Pieplu.kevin@gmail.com" />
         </div>
       </Modal>
     </>
