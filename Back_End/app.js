@@ -18,5 +18,5 @@ app.use('/images', express.static('images'))
 
 app.use('/api/auth', authRoutes)
 app.use('/api/work', worksRoutes)
-
+app.get('/health', (req, res) => res.send('OK'));
 module.exports = app
